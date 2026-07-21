@@ -1,0 +1,29 @@
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# virtual environment
+venv/
+env/
+.venv/
+
+#Django files
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+#static fiels
+static files
+
+.env
+
+#media uploads
+media/
+
+#IDE settings
+.vscode
+.idea/
+
+# Mac fiules
+.DS_store
