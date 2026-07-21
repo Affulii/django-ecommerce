@@ -1,0 +1,44 @@
+{% load static %}
+
+<!doctype html>
+<html>
+  <head>
+    <title> MY STORE </title> 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+
+    <!-- HERO BANNER -->
+    <section class ="hero-banner">
+        <div class="hero-text">
+            <h1>Discover Amazing Technology</h1>
+            <P>Explore the latest apple product.</P>
+            <button>Shop Now</button>
+        </div>
+    </section>
+    <!-- PRODUCT SESSION -->
+
+    <section class="product-session">
+
+        <h2>Featured products</h2>
+
+        <div class="product-grid">
+            {% for product in products %}
+               <div class="product-card">
+                
+                  {% if product.image %}
+                      <img src="{{ product.image.url }}" alt= "{{ product.name }}">                     
+                  {% endif %}
+                  <h3>{{ product.name }}</h3>
+                  <p>{{ product.description }}</p>
+                  <p>${{ product.price }}</p>
+                  <button> Add to cart </button>
+               </div>
+            {% endfor %}
+        </div>
+    </section>
+    <h1>welcome to my store</h1>  
+    <p>Discover products at amazing prices</p>  
+  </body>
+</html>

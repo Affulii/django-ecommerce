@@ -1,0 +1,84 @@
+CSS 
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:blue;
+}
+
+/* NAVBAR */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:red;
+    padding:15px 40px
+}
+.logo{
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+}
+.navbar ul{
+    list-style:none;
+    display:flex;
+    gap:20px;
+    margin:0;
+}
+.navbar a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* HERO */
+.hero-banner{
+    text-align:center;
+    padding:100px 20px;
+}
+.hero-banner h1{
+    font-size:50px;
+    color:#222;
+}
+.hero-banner p{
+    font-size:20px;
+    color:#666;
+}
+
+/* PRODUCT SESSION */
+.product-session {
+    padding: 30px;
+}
+
+/* PRODUCT GRID */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* PRODUCT CARD */
+.product-card{
+    width: 200px;
+    border: 1px solid #add;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    background: white;
+}
+
+/* PRODCUT IMAGE */
+.product-card img{
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+}
+
+/* BUTTON */
+.product-card button{
+    background: #e60000;
+    color:white;
+    border:none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
