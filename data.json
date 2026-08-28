@@ -1,0 +1,1328 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$KxBlatiiPdV4TEzOQipR3N$J0IFKO4/e+85yUrga1c4I9RWZllLc1yrIVBXO7P6sD4=",
+        "last_login": "2026-08-26T14:48:02.840Z",
+        "is_superuser": true,
+        "username": "ebenezerafful",
+        "first_name": "",
+        "last_name": "",
+        "email": "ebenezerafful607@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-07-15T16:29:14.917Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$TMUng5jVgMgA8ZSJkqCmIf$jkyvzRo5zGCoXoqmepZVE6VMU0hOx0Hq2cx2Vo7gMIE=",
+        "last_login": "2026-08-05T09:49:57.322Z",
+        "is_superuser": true,
+        "username": "ebenezer",
+        "first_name": "",
+        "last_name": "",
+        "email": "ebenezerafful607@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-08-05T09:47:13.946Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "21z8ih73rmz443itxtwl6g5k9hxxaafs",
+    "fields": {
+        "session_data": "eyJjYXJ0Ijp7fX0:1wzGH7:UUTB4AyYgw4FCcPer3i69vAyXxKN87wHWGwjFPTG8HQ",
+        "expire_date": "2026-09-09T16:14:53.747Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "iot3b0u7wnb93gl2rd4i43y2xya2o67q",
+    "fields": {
+        "session_data": ".eJyrVkpOLCpRsqpWMgQRhaWJeSWZJZVKVka1OkrGqEKGOkoFRZnJqUpWSkamlnoGBkq1tbUAqGcUIQ:1wzB2h:eXJZWsRW8NnFWSAMFBlHW3DCOrjLAtH_0W8hA3hwwvw",
+        "expire_date": "2026-09-09T10:39:39.683Z"
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 1,
+    "fields": {
+        "name": "macbook pro 13\" 256",
+        "price": "1555.99",
+        "category": "accessories",
+        "stock": 6,
+        "description": "Brand new",
+        "image": "products/mac-macbook-pro-size-unselect-202601-gallery-1.webp",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 2,
+    "fields": {
+        "name": "iphone 17 Air",
+        "price": "899.00",
+        "category": "accessories",
+        "stock": 12,
+        "description": "Brand new",
+        "image": "products/iphone-air-finish-unselect-gallery-1-202509.webp",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 3,
+    "fields": {
+        "name": "Homepod",
+        "price": "259.00",
+        "category": "accessories",
+        "stock": 4,
+        "description": "Brand new",
+        "image": "products/homepod-select-202210.jpeg",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 4,
+    "fields": {
+        "name": "Airpods pro 3",
+        "price": "240.00",
+        "category": "accessories",
+        "stock": 11,
+        "description": "Brand new",
+        "image": "products/airpods-pro-3-hero-select-202509.jpeg",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 5,
+    "fields": {
+        "name": "Airpod max 2nd Gen",
+        "price": "549.00",
+        "category": "accessories",
+        "stock": 7,
+        "description": "Brand new",
+        "image": "products/airpods-max-hero-select-202409.jpeg",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 6,
+    "fields": {
+        "name": "Airtag",
+        "price": "25.00",
+        "category": "accessories",
+        "stock": 25,
+        "description": "Brand new",
+        "image": "products/airtag-4pack-select-202601.webp",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 7,
+    "fields": {
+        "name": "homepod mini",
+        "price": "99.00",
+        "category": "accessories",
+        "stock": 3,
+        "description": "Brand new",
+        "image": "products/homepod-mini-select-202210.jpeg",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 8,
+    "fields": {
+        "name": "ipad",
+        "price": "299.00",
+        "category": "accessories",
+        "stock": 5,
+        "description": "Brand new",
+        "image": "products/ipad-card-40-ipad-202410.jpeg",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 9,
+    "fields": {
+        "name": "Apple pencil",
+        "price": "95.00",
+        "category": "accessories",
+        "stock": 7,
+        "description": "Brand new",
+        "image": "products/MX2D3.jpeg",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 10,
+    "fields": {
+        "name": "ipad pro M5",
+        "price": "1099.00",
+        "category": "accessories",
+        "stock": 3,
+        "description": "Brand new",
+        "image": "products/ipad-card-40-pro-202405.jpeg",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 11,
+    "fields": {
+        "name": "40W Dynamic Power Adapter",
+        "price": "35.00",
+        "category": "accessories",
+        "stock": 12,
+        "description": "Brand new",
+        "image": "products/MGKN4.jpeg",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 12,
+    "fields": {
+        "name": "folio case",
+        "price": "99.00",
+        "category": "accessories",
+        "stock": 5,
+        "description": "Brand new",
+        "image": "products/MDEQ4.jpeg",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 13,
+    "fields": {
+        "name": "apple ultra",
+        "price": "599.00",
+        "category": "accessories",
+        "stock": 2,
+        "description": "Brand new",
+        "image": "products/ultwatch.webp",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 15,
+    "fields": {
+        "name": "Jbl Clip 5",
+        "price": "59.00",
+        "category": "accessories",
+        "stock": 9,
+        "description": "Brand new",
+        "image": "products/jbl_sd.webp",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 16,
+    "fields": {
+        "name": "Hp Victus",
+        "price": "950.00",
+        "category": "laptops",
+        "stock": 6,
+        "description": "Brand new",
+        "image": "products/gaming_pp.webp",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 17,
+    "fields": {
+        "name": "Apple series 10",
+        "price": "399.00",
+        "category": "accessories",
+        "stock": 5,
+        "description": "Brand new",
+        "image": "products/watch_GxIUeHK.webp",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 18,
+    "fields": {
+        "name": "Lenovo Gaming laptop",
+        "price": "1299.00",
+        "category": "laptops",
+        "stock": 2,
+        "description": "Brand new",
+        "image": "products/gaming_laptop.webp",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 19,
+    "fields": {
+        "name": "iphone 17pro",
+        "price": "950.00",
+        "category": "phones",
+        "stock": 7,
+        "description": "Brand new",
+        "image": "products/iphone-17-pro-model.webp",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 20,
+    "fields": {
+        "name": "beats solo",
+        "price": "150.00",
+        "category": "accessories",
+        "stock": 3,
+        "description": "Brand new",
+        "image": "products/MUW33.jpeg",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "ecommapp.product",
+    "pk": 21,
+    "fields": {
+        "name": "ipnone 16",
+        "price": "799.00",
+        "category": "phones",
+        "stock": 5,
+        "description": "Brand new",
+        "image": "products/iphone-16-model.webp",
+        "storage": null,
+        "display_specs": null,
+        "processor": null,
+        "camera": null,
+        "battery": null
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2026-07-15T16:40:46.484Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "1",
+        "object_repr": "macbook pro 13\" 256",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2026-07-15T16:45:10.510Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "2",
+        "object_repr": "iphone 17 Air",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2026-07-15T16:47:51.727Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "3",
+        "object_repr": "Homepod",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2026-07-15T16:48:37.783Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "4",
+        "object_repr": "Airpods pro 3",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2026-07-15T16:49:36.914Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "5",
+        "object_repr": "Airpod max 2nd Gen",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2026-07-20T13:07:13.262Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "5",
+        "object_repr": "Airpod max 2nd Gen",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2026-07-20T13:07:20.338Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "4",
+        "object_repr": "Airpods pro 3",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2026-07-20T13:07:23.371Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "3",
+        "object_repr": "Homepod",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2026-07-20T13:07:26.173Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "2",
+        "object_repr": "iphone 17 Air",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2026-07-20T13:07:29.239Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "1",
+        "object_repr": "macbook pro 13\" 256",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2026-07-20T14:55:37.734Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "5",
+        "object_repr": "Airpod max 2nd Gen",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2026-08-20T12:30:43.571Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "6",
+        "object_repr": "Airtag",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2026-08-20T12:31:42.177Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "7",
+        "object_repr": "homepod mini",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2026-08-20T12:36:48.187Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "8",
+        "object_repr": "ipad",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2026-08-20T12:37:30.886Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "9",
+        "object_repr": "Apple pencil",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2026-08-20T12:40:12.639Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "10",
+        "object_repr": "ipad pro M5",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2026-08-20T12:42:34.368Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "11",
+        "object_repr": "40W Dynamic Power Adapter",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2026-08-20T12:43:04.092Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "12",
+        "object_repr": "folio case",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2026-08-22T22:23:14.768Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "13",
+        "object_repr": "apple ultra",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2026-08-22T22:24:03.642Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "14",
+        "object_repr": "Apple series 10",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2026-08-22T22:24:59.219Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "7",
+        "object_repr": "homepod mini",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2026-08-22T22:25:05.892Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "6",
+        "object_repr": "Airtag",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2026-08-22T22:25:14.569Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "5",
+        "object_repr": "Airpod max 2nd Gen",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2026-08-22T22:33:54.191Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "14",
+        "object_repr": "Apple series 10",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2026-08-22T22:35:37.350Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "15",
+        "object_repr": "Jbl Clip 5",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2026-08-22T22:36:43.541Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "16",
+        "object_repr": "Hp Victus",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2026-08-22T22:37:54.960Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "17",
+        "object_repr": "Apple series 10",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2026-08-22T22:38:50.477Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "18",
+        "object_repr": "Lenovo Gaming laptop",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2026-08-22T23:02:13.704Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "19",
+        "object_repr": "iphone 17pro",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2026-08-22T23:03:07.222Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "20",
+        "object_repr": "beats solo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2026-08-22T23:03:39.252Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "19",
+        "object_repr": "iphone 17pro",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2026-08-22T23:04:16.783Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "21",
+        "object_repr": "ipnone 16",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2026-08-26T15:03:29.507Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "21",
+        "object_repr": "ipnone 16",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2026-08-26T15:03:41.625Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "20",
+        "object_repr": "beats solo",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2026-08-26T15:03:50.569Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "19",
+        "object_repr": "iphone 17pro",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2026-08-26T15:03:59.719Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "18",
+        "object_repr": "Lenovo Gaming laptop",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2026-08-26T15:04:14.118Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "17",
+        "object_repr": "Apple series 10",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2026-08-26T15:04:25.990Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "16",
+        "object_repr": "Hp Victus",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2026-08-26T15:04:33.004Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "15",
+        "object_repr": "Jbl Clip 5",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+        "action_time": "2026-08-26T15:04:42.704Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "13",
+        "object_repr": "apple ultra",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+        "action_time": "2026-08-26T15:04:49.857Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "12",
+        "object_repr": "folio case",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+        "action_time": "2026-08-26T15:04:56.773Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "11",
+        "object_repr": "40W Dynamic Power Adapter",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+        "action_time": "2026-08-26T15:05:10.075Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "10",
+        "object_repr": "ipad pro M5",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+        "action_time": "2026-08-26T15:05:19.006Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "9",
+        "object_repr": "Apple pencil",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+        "action_time": "2026-08-26T15:05:26.987Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "8",
+        "object_repr": "ipad",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+        "action_time": "2026-08-26T15:05:38.855Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "7",
+        "object_repr": "homepod mini",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+        "action_time": "2026-08-26T15:05:57.045Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "6",
+        "object_repr": "Airtag",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+        "action_time": "2026-08-26T15:06:05.835Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "5",
+        "object_repr": "Airpod max 2nd Gen",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+        "action_time": "2026-08-26T15:06:13.538Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "4",
+        "object_repr": "Airpods pro 3",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+        "action_time": "2026-08-26T15:06:21.889Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "3",
+        "object_repr": "Homepod",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+        "action_time": "2026-08-26T15:06:31.519Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "2",
+        "object_repr": "iphone 17 Air",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+        "action_time": "2026-08-26T15:06:39.920Z",
+        "user": [
+            "ebenezerafful"
+        ],
+        "content_type": [
+            "ecommapp",
+            "product"
+        ],
+        "object_id": "1",
+        "object_repr": "macbook pro 13\" 256",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+    }
+}
+]

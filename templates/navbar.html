@@ -1,13 +1,92 @@
-<nav class="navbar">
-    <div class="logo">
-        My store 
-    </div>
-    
-    <ul>
-        <li><a href="/">Home</a>
-        <li><a href="/products/">Products</a>
-        <li><a href="/categories/">Categories</a>
-        <li><a href="/cart/">Cart</a>
-        <li><a href="/login/">Login</a>
-        
-</nav>
+<style>
+    /* Basic Dropdown Styling & Hover Mechanism */
+    .navbar .dropdown {
+      position: relative;
+    }
+  
+    .navbar .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #ffffff;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+      padding: 8px 0;
+      margin: 0;
+      list-style: none;
+      border-radius: 6px;
+      z-index: 1000;
+    }
+  
+    .navbar .dropdown-menu li {
+      display: block;
+    }
+  
+    .navbar .dropdown-menu li a {
+      color: #333333;
+      padding: 8px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+  
+    .navbar .dropdown-menu li a:hover {
+      background-color: #f8f9fa;
+      color: #dc3545; /* Highlight accent color */
+    }
+  
+    /* Show dropdown on hover */
+    .navbar .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+  </style>
+  
+  <nav class="navbar">
+      <div class="logo">
+          My store 
+      </div>
+  
+      <!-- Search Bar -->
+      <form class="search-bar" action="{% url 'shop' %}" method="GET">
+          <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Search products..." aria-label="Search">
+          <button type="submit">Search</button>
+      </form>
+  
+      <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          
+          <!-- Hover Dropdown Categories Menu -->
+          <li class="dropdown">
+              <a href="{% url 'categories' %}">Categories</a>
+              <ul class="dropdown-menu">
+                  <li><a class="phones" href="{% url 'category_phones' %}">Phones</a></li>
+                  <li><a class="laptops" href="{% url 'category_laptops' %}">Laptops</a></li>
+                  <li><a class="accessories" href="{% url 'category_accessories' %}">Accessories</a></li>
+              </ul>
+          </li>
+  
+          <li><a href="/cart/">Cart</a></li>
+          
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About Us</a>
+          </li>
+  
+          <!-- Authentication Links -->
+          {% if user.is_authenticated %}
+              <li><a href="#">Hi, {{ user.username }}</a></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+              <li><a href="{% url 'login' %}">Login</a></li>
+              <li><a href="{% url 'sign_up' %}">Sign Up</a></li>
+          {% endif %}
+      </ul>   
+  </nav>
+
+
+
+
+
+
+

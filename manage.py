@@ -2,6 +2,9 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+# Override the default port
+from django.core.management.commands.runserver import Command as runserver
+runserver.default_port = "8080"  # Set your preferred port here
 
 
 def main():

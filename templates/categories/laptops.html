@@ -1,0 +1,178 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Varieties of Laptops - MY STORE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bg-light">
+    {% include 'navbar.html' %}
+
+    <section class="bg-dark text-white py-4 text-center">
+        <div class="container">
+            <h1 class="fw-bold">Laptops & Computers</h1>
+            <p class="text-white-50 mb-0">High-performance laptops for gaming, design, and daily work.</p>
+        </div>
+    </section>
+
+    <main class="container my-5">
+        <div class="row g-4">
+            <!-- Laptop Item 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm text-center p-3">
+                    <img src="{% static 'images/gaming pp.webp' %}" class="card-img-top mx-auto" style="height: 200px; object-fit: contain;" alt="Hp Victus Gaming Laptop">
+                    <div class="card-body d-flex flex-column justify-content-between p-2">
+                        <div>
+                            <span class="badge bg-danger mb-2">High Performance</span>
+                            <h5 class="fw-bold mb-1 text-dark">Hp Victus Gaming Laptop</h5>
+                            <p class="text-muted small mb-2">32GB RAM, RTX 4080 GPU, 1TB SSD</p>
+                        </div>
+                        <div>
+                            <p class="fw-bold fs-5 text-success mb-2">$999.99</p>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#laptopModal1">View Details</button>
+                                <a href="{% url 'cart' %}" class="btn btn-dark btn-sm">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Laptop Item 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm text-center p-3">
+                    <img src="{% static 'images/macbook-pro-size-1.webp' %}" class="card-img-top mx-auto" style="height: 200px; object-fit: contain;" alt="MacBook Pro 13-inch">
+                    <div class="card-body d-flex flex-column justify-content-between p-2">
+                        <div>
+                            <span class="badge bg-danger mb-2">High Performance</span>
+                            <h5 class="fw-bold mb-1 text-dark">MacBook Pro 13"</h5>
+                            <p class="text-muted small mb-2">16GB Unified Memory, M-Series Chip, 512GB SSD</p>
+                        </div>
+                        <div>
+                            <p class="fw-bold fs-5 text-success mb-2">$1,499.99</p>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#laptopModal2">View Details</button>
+                                <a href="{% url 'cart' %}" class="btn btn-dark btn-sm">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Laptop Item 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm text-center p-3">
+                    <img src="{% static 'images/gaming laptop.webp' %}" class="card-img-top mx-auto" style="height: 200px; object-fit: contain;" alt="Lenovo Pro Gaming Laptop">
+                    <div class="card-body d-flex flex-column justify-content-between p-2">
+                        <div>
+                            <span class="badge bg-danger mb-2">High Performance</span>
+                            <h5 class="fw-bold mb-1 text-dark">Lenovo Pro Gaming Laptop</h5>
+                            <p class="text-muted small mb-2">32GB RAM, RTX 4080 GPU, 1TB SSD</p>
+                        </div>
+                        <div>
+                            <p class="fw-bold fs-5 text-success mb-2">$1,299.99</p>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#laptopModal3">View Details</button>
+                                <a href="{% url 'cart' %}" class="btn btn-dark btn-sm">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal 1: HP Victus -->
+    <div class="modal fade" id="laptopModal1" tabindex="-1" aria-labelledby="laptopModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="laptopModal1Label">Hp Victus Gaming Laptop</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="text-center mb-3">
+                        <img src="{% static 'images/gaming pp.webp' %}" class="img-fluid mb-2" style="max-height: 200px; object-fit: contain;" alt="Hp Victus Gaming Laptop">
+                        <h4 class="text-success fw-bold">$999.99</h4>
+                    </div>
+                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2">
+                        <li class="list-group-item"><strong>Processor:</strong> Intel Core i7 / AMD Ryzen 7</li>
+                        <li class="list-group-item"><strong>Memory:</strong> 32GB RAM</li>
+                        <li class="list-group-item"><strong>Graphics:</strong> NVIDIA GeForce RTX 4080</li>
+                        <li class="list-group-item"><strong>Storage:</strong> 1TB NVMe SSD</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <a href="{% url 'cart' %}" class="btn btn-dark btn-sm">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: MacBook Pro -->
+    <div class="modal fade" id="laptopModal2" tabindex="-1" aria-labelledby="laptopModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="laptopModal2Label">MacBook Pro 13"</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="text-center mb-3">
+                        <img src="{% static 'images/macbook-pro-size-1.webp' %}" class="img-fluid mb-2" style="max-height: 200px; object-fit: contain;" alt="MacBook Pro 13-inch">
+                        <h4 class="text-success fw-bold">$1,499.99</h4>
+                    </div>
+                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2">
+                        <li class="list-group-item"><strong>Display:</strong> 13.3-inch Retina Display</li>
+                        <li class="list-group-item"><strong>Processor:</strong> Apple M-Series Chip</li>
+                        <li class="list-group-item"><strong>Memory:</strong> 16GB Unified Memory</li>
+                        <li class="list-group-item"><strong>Storage:</strong> 512GB SSD</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <a href="{% url 'cart' %}" class="btn btn-dark btn-sm">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Lenovo Pro Gaming -->
+    <div class="modal fade" id="laptopModal3" tabindex="-1" aria-labelledby="laptopModal3Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="laptopModal3Label">Lenovo Pro Gaming Laptop</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="text-center mb-3">
+                        <img src="{% static 'images/gaming laptop.webp' %}" class="img-fluid mb-2" style="max-height: 200px; object-fit: contain;" alt="Lenovo Pro Gaming Laptop">
+                        <h4 class="text-success fw-bold">$1,299.99</h4>
+                    </div>
+                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2">
+                        <li class="list-group-item"><strong>Display:</strong> High-Refresh-Rate Gaming Screen</li>
+                        <li class="list-group-item"><strong>Memory:</strong> 32GB RAM</li>
+                        <li class="list-group-item"><strong>Graphics:</strong> NVIDIA GeForce RTX 4080</li>
+                        <li class="list-group-item"><strong>Storage:</strong> 1TB SSD</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <a href="{% url 'cart' %}" class="btn btn-dark btn-sm">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

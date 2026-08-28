@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+  <h2 class="text-white fw-bold mb-4">Your Shopping Cart</h2>
+
+  {% if cart %}
+  <div class="row g-4">
+    <!-- Items List -->
+    <div class="col-lg-8">
+      <div class="card bg-dark text-white border-secondary p-3">
+        <div class="table-responsive">
+          <table class="table table-dark table-hover align-middle mb-0">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Total</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- FIXED: Changed 'Cart' to 'cart' -->
+              {% for item in cart %}
+              {% with product=item.product %}
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" width="50" class="rounded">
+                    {% endif %}
+                    <span class="fw-semibold">{{ product.name }}</span>
+                  </div>
+                </td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.price }}</td>
+                <td class="fw-bold">${{ item.total_price }}</td>
+                <td>
+                  <form action="{% url 'cart_remove' product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
+                  </form>
+                </td>
+              </tr>
+              {% endwith %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Sidebar -->
+    <div class="col-lg-4">
+      <div class="card bg-dark text-white border-secondary p-4">
+        <h4 class="fw-bold mb-3">Order Summary</h4>
+        <div class="d-flex justify-content-between mb-2">
+          <span>Subtotal</span>
+          <span>${{ cart.get_total_price }}</span>
+        </div>
+        <div class="d-flex justify-content-between mb-3">
+          <span>Shipping</span>
+          <span class="text-success">Free</span>
+        </div>
+        <hr class="border-secondary">
+        <div class="d-flex justify-content-between fs-5 fw-bold mb-4">
+          <span>Total</span>
+          <span>${{ cart.get_total_price }}</span>
+        </div>
+        <!-- FIXED: Removed extra </a> tag below -->
+        <a href="{% url 'checkout' %}" class="btn btn-danger btn-lg w-100 rounded-pill fw-semibold">Proceed to Checkout</a>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="text-center py-5">
+    <p class="text-white-50 fs-4">Your cart is currently empty.</p>
+    <a href="{% url 'shop' %}" class="btn btn-light rounded-pill px-4">Continue Shopping</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5 text-center">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card bg-dark text-white border-secondary p-4 p-md-5 shadow-lg">
+                <!-- Success Icon -->
+                <div class="mb-4 text-success">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-check-circle-fill mx-auto" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l5-5.25a.75.75 0 0 0-.022-1.08z"/>
+                    </svg>
+                </div>
+
+                <h1 class="fw-bold mb-2">Thank You for Your Order!</h1>
+                <p class="text-white-50 mb-4">We've received your order and are processing it now.</p>
+
+                <!-- Order Details Box -->
+                <div class="bg-secondary bg-opacity-25 rounded p-3 mb-4 text-start">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-white-50">Order Reference:</span>
+                        <span class="fw-bold text-success">{{ order.order_number }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-white-50">Items Purchased:</span>
+                        <span>{{ order.items_count }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="text-white-50">Amount Paid:</span>
+                        <span class="fw-bold">${{ order.total }}</span>
+                    </div>
+                </div>
+
+                <p class="small text-white-50 mb-4">A confirmation email with delivery updates will be sent shortly.</p>
+
+                <!-- Navigation Action -->
+                <div>
+                    <a href="{% url 'shop' %}" class="btn btn-danger btn-lg rounded-pill px-4 fw-semibold">
+                        Back to Shop
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

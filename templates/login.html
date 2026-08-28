@@ -1,0 +1,21 @@
+<h1> Log in now </h1>
+
+{% if messages %}
+    {% for message in messages %}
+        <h3 style="color: red;">{{ message }}</h3>
+    {% endfor %}
+{% endif %}
+
+<form action="{% url 'login' %}" method="POST">
+    {% csrf_token %}  
+    
+    <p>Username:</p>
+    <input type="text" name="username" required />
+    
+    <p>Password:</p>
+    <input type="password" name="password" required /> <br><br>
+    
+    <input type="submit" value="Login" />
+</form>
+
+<p>Don't have an account? <a href="{% url 'sign_up' %}">Sign up here</a></p> 
