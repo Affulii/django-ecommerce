@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'ecommapp',
 ]
 
@@ -130,3 +131,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 CART_SESSION_ID = 'cart'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ADMIN_NOTIFICATION_EMAIL = 'ebenezerafful607@gmail.com'
+DEFAULT_FROM_EMAIL = 'orders@yourstore.com'

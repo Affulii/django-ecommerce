@@ -21,7 +21,6 @@
               </tr>
             </thead>
             <tbody>
-              <!-- FIXED: Changed 'Cart' to 'cart' -->
               {% for item in cart %}
               {% with product=item.product %}
               <tr>
@@ -33,13 +32,35 @@
                     <span class="fw-semibold">{{ product.name }}</span>
                   </div>
                 </td>
-                <td>{{ item.quantity }}</td>
+                
+                <!-- Quantity Controls with + / - Buttons -->
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <!-- Decrement (-) Button -->
+                    <a href="{% url 'cart_decrement' product.id %}" class="btn btn-outline-secondary btn-sm px-2 text-white">
+                      <i class="bi bi-dash"></i>
+                    </a>
+
+                    <!-- Current Quantity Display -->
+                    <span class="fw-bold px-2">{{ item.quantity }}</span>
+
+                    <!-- Increment (+) Button -->
+                    <a href="{% url 'cart_add' product.id %}" class="btn btn-outline-secondary btn-sm px-2 text-white">
+                      <i class="bi bi-plus"></i>
+                    </a>
+                  </div>
+                </td>
+
                 <td>${{ item.price }}</td>
                 <td class="fw-bold">${{ item.total_price }}</td>
+                
+                <!-- Remove Item Completely -->
                 <td>
-                  <form action="{% url 'cart_remove' product.id %}" method="post">
+                  <form action="{% url 'cart_remove' product.id %}" method="post" class="m-0">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
+                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                      <i class="bi bi-trash me-1"></i>Remove
+                    </button>
                   </form>
                 </td>
               </tr>
@@ -68,7 +89,6 @@
           <span>Total</span>
           <span>${{ cart.get_total_price }}</span>
         </div>
-        <!-- FIXED: Removed extra </a> tag below -->
         <a href="{% url 'checkout' %}" class="btn btn-danger btn-lg w-100 rounded-pill fw-semibold">Proceed to Checkout</a>
       </div>
     </div>

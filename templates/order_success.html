@@ -17,25 +17,28 @@
 
                 <!-- Order Details Box -->
                 <div class="bg-secondary bg-opacity-25 rounded p-3 mb-4 text-start">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="text-white-50">Order Reference:</span>
-                        <span class="fw-bold text-success">{{ order.order_number }}</span>
+                    <div class="d-flex justify-content-between mb-2 align-items-center">
+                        <span class="text-white-50">Order ID:</span>
+                        <span class="fw-bold text-danger fs-5">#{{ order_id }}</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span class="text-white-50">Items Purchased:</span>
-                        <span>{{ order.items_count }}</span>
+                        <span>{{ items_count }}</span>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <span class="text-white-50">Amount Paid:</span>
-                        <span class="fw-bold">${{ order.total }}</span>
+                        <span class="text-white-50">Total Amount:</span>
+                        <span class="fw-bold text-success">${{ total }}</span>
                     </div>
                 </div>
 
-                <p class="small text-white-50 mb-4">A confirmation email with delivery updates will be sent shortly.</p>
+                <p class="small text-white-50 mb-4">Save your <strong>Order ID (#{{ order_id }})</strong> to track your shipment status on our homepage.</p>
 
-                <!-- Navigation Action -->
-                <div>
-                    <a href="{% url 'shop' %}" class="btn btn-danger btn-lg rounded-pill px-4 fw-semibold">
+                <!-- Navigation Actions -->
+                <div class="d-flex flex-column flex-sm-row gap-2 justify-content-center">
+                    <a href="{% url 'home' %}?order_id={{ order_id }}" class="btn btn-danger btn-lg rounded-pill px-4 fw-semibold">
+                        <i class="bi bi-truck me-2"></i>Track This Order
+                    </a>
+                    <a href="{% url 'shop' %}" class="btn btn-outline-light btn-lg rounded-pill px-4 fw-semibold">
                         Back to Shop
                     </a>
                 </div>

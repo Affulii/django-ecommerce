@@ -35,7 +35,10 @@
                             <p class="fw-bold fs-5 text-success mb-2">$999.99</p>
                             <div class="d-grid gap-2">
                                 <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#laptopModal1">View Details</button>
-                                <a href="{% url 'cart' %}" class="btn btn-dark btn-sm">Buy Now</a>
+                                <form action="{% url 'cart_add' product_id=16 %}" method="POST" class="m-0 p-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</a>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -56,7 +59,10 @@
                             <p class="fw-bold fs-5 text-success mb-2">$1,499.99</p>
                             <div class="d-grid gap-2">
                                 <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#laptopModal2">View Details</button>
-                                <a href="{% url 'cart' %}" class="btn btn-dark btn-sm">Buy Now</a>
+                                <form action="{% url 'cart_add' product_id=1 %}" method="POST" class="m-0 p-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</a>
+                                </form> 
                             </div>
                         </div>
                     </div>
@@ -77,7 +83,33 @@
                             <p class="fw-bold fs-5 text-success mb-2">$1,299.99</p>
                             <div class="d-grid gap-2">
                                 <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#laptopModal3">View Details</button>
-                                <a href="{% url 'cart' %}" class="btn btn-dark btn-sm">Buy Now</a>
+                                <form action="{% url 'cart_add' product_id=18 %}" method="POST" class="m-0 p-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</a>
+                                </form>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--- macbook air -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm text-center p-3">
+                    <img src="{% static 'images/mac_air.png' %}" class="card-img-top mx-auto" style="height: 200px; object-fit: contain;" alt="MacBook Air">
+                    <div class="card-body d-flex flex-column justify-content-between p-2">
+                        <div>
+                            <span class="badge bg-danger mb-2">High Performance</span>
+                            <h5 class="fw-bold mb-1 text-dark">Macbook Air</h5>
+                            <p class="text-muted small mb-2">16GB unified memory, M5 with 10 core CPU, 512 SSD</p>
+                        </div>
+                        <div>
+                            <p class="fw-bold fs-5 text-success mb-2">$1,299.00</p>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#laptopModal4">View Details</button>
+                                <form action="{% url 'cart_add' product_id=25 %}" method="POST" class="m-0 p-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</a>
+                                </form>    
                             </div>
                         </div>
                     </div>
@@ -109,7 +141,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <a href="{% url 'cart' %}" class="btn btn-dark btn-sm">Buy Now</a>
+                    <form action="{% url 'cart_add' product_id=16 %}" method="POST" class="m-0 p-0">
+                        {% csrf_token %}
+                        <button type="submit" class=" btn btn-dark btn-sm w-100">Buy Now</button>
+                    </form> 
                 </div>
             </div>
         </div>
@@ -138,7 +173,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <a href="{% url 'cart' %}" class="btn btn-dark btn-sm">Buy Now</a>
+                    <form action="{% url 'cart_add' product_id=1 %}" method="POST" class="m-0 p-0">
+                        {% csrf_token %}
+                        <button type="submit" clas="btn btn-dark btn-sm w-100">Buy Now</button>
+                    </form> 
                 </div>
             </div>
         </div>
@@ -167,7 +205,41 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <a href="{% url 'cart' %}" class="btn btn-dark btn-sm">Buy Now</a>
+                    <form action="{% url 'cart_add' product_id=18 %}" method="POST" class="m-0 p-0">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- mac air modal -->
+    <div class="modal fade" id="laptopModal2" tabindex="-1" aria-labelledby="laptopModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="laptopModal2Label">MacBook Air 13"</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="text-center mb-3">
+                        <img src="{% static 'images/mac_air.png' %}" class="img-fluid mb-2" style="max-height: 200px; object-fit: contain;" alt="MacBook Air 13-inch">
+                        <h4 class="text-success fw-bold">$1,299.00</h4>
+                    </div>
+                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2">
+                        <li class="list-group-item"><strong>Display:</strong> 13.3-inch Retina Display</li>
+                        <li class="list-group-item"><strong>Processor:</strong> Apple M5 Chip</li>
+                        <li class="list-group-item"><strong>Memory:</strong> 16GB Unified Memory</li>
+                        <li class="list-group-item"><strong>Storage:</strong> 512GB SSD</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=25 %}" method="POST" class="m-0 p-0">
+                        {% csrf_token %}
+                        <button type="submit" clas="btn btn-dark btn-sm w-100">Buy Now</button>
+                    </form> 
                 </div>
             </div>
         </div>

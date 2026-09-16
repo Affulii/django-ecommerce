@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Shop by Category</h1>
+    <p class="subtitle">Select a category below to explore our products.</p>
+
+    <div class="categories-grid">
+            <!-- 1. Laptops Button -->
+        <a href="{% url 'category_laptops' %}" class="category-card">
+            <div class="category-icon">💻</div>
+            <div class="category-name">Laptops</div>
+            <span class="btn">View Laptops</span>
+        </a>
+
+        <!-- 2. Phones Button -->
+        <a href="{% url 'category_phones' %}" class="category-card">
+            <div class="category-icon">📱</div>
+            <div class="category-name">Phones</div>
+            <span class="btn">View Phones</span>
+        </a>
+
+        <!-- 3. Accessories Button -->
+        <a href="{% url 'category_accessories' %}" class="category-card">
+            <div class="category-icon">🎧</div>
+            <div class="category-name">Accessories</div>
+            <span class="btn">View Accessories</span>
+        </a>
+    </div>
+</div>
+{% endblock %}

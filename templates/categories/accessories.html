@@ -212,6 +212,98 @@
                     </div>
                 </div>
             </div>
+            <!-- Accessory 9 -->
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card h-100 border-0 shadow-sm text-center p-3">
+                    <img src="{% static 'images/MX2D3.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Apple Pencil">
+                    <div class="card-body d-flex flex-column justify-content-between p-2">
+                        <div>
+                            <h6 class="fw-bold mb-1 text-dark">Apple Pencil</h6>
+                            <p class="text-muted small mb-2">Stylus Pen</p>
+                        </div>
+                        <div>
+                            <p class="fw-bold text-success mb-2">$99.00</p>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal8">View Details</button>
+                                <!-- Add to Cart Form -->
+                                <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Accessory 10 -->
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card h-100 border-0 shadow-sm text-center p-3">
+                    <img src="{% static 'images/MX2D3.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Apple Pencil">
+                    <div class="card-body d-flex flex-column justify-content-between p-2">
+                        <div>
+                            <h6 class="fw-bold mb-1 text-dark">Apple Pencil</h6>
+                            <p class="text-muted small mb-2">Stylus Pen</p>
+                        </div>
+                        <div>
+                            <p class="fw-bold text-success mb-2">$99.00</p>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal8">View Details</button>
+                                <!-- Add to Cart Form -->
+                                <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Accessory 11 -->
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card h-100 border-0 shadow-sm text-center p-3">
+                    <img src="{% static 'images/MX2D3.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Apple Pencil">
+                    <div class="card-body d-flex flex-column justify-content-between p-2">
+                        <div>
+                            <h6 class="fw-bold mb-1 text-dark">Apple Pencil</h6>
+                            <p class="text-muted small mb-2">Stylus Pen</p>
+                        </div>
+                        <div>
+                            <p class="fw-bold text-success mb-2">$99.00</p>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal8">View Details</button>
+                                <!-- Add to Cart Form -->
+                                <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Accessory 12 -->
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card h-100 border-0 shadow-sm text-center p-3">
+                    <img src="{% static 'images/MX2D3.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Apple Pencil">
+                    <div class="card-body d-flex flex-column justify-content-between p-2">
+                        <div>
+                            <h6 class="fw-bold mb-1 text-dark">Apple Pencil</h6>
+                            <p class="text-muted small mb-2">Stylus Pen</p>
+                        </div>
+                        <div>
+                            <p class="fw-bold text-success mb-2">$99.00</p>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal8">View Details</button>
+                                <!-- Add to Cart Form -->
+                                <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -479,6 +571,142 @@
             </div>
         </div>
     </div>
+
+    <!-- modal 9 -->
+    <div class="modal fade" id="productModal9" tabindex="-1" aria-labelledby="productModal9Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="productModal9Label">Apple Pencil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="text-center mb-3">
+                        <img src="{% static 'images/MX2D3.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Apple Pencil">
+                        <h4 class="text-success fw-bold">$99.00</h4>
+                    </div>
+                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2">
+                        <li class="list-group-item"><strong>Precision:</strong> Pixel-perfect accuracy</li>
+                        <li class="list-group-item"><strong>Sensitivity:</strong> Advanced tilt & pressure control</li>
+                        <li class="list-group-item"><strong>Latency:</strong> Ultra-low latency response</li>
+                        <li class="list-group-item"><strong>Usage:</strong> Ideal for digital art and note-taking</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <!-- Add to Cart Form -->
+                    <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- moadal 10 -->
+    <div class="modal fade" id="productModal10" tabindex="-1" aria-labelledby="productModal10Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="productModal10Label">Apple Pencil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="text-center mb-3">
+                        <img src="{% static 'images/MX2D3.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Apple Pencil">
+                        <h4 class="text-success fw-bold">$99.00</h4>
+                    </div>
+                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2">
+                        <li class="list-group-item"><strong>Precision:</strong> Pixel-perfect accuracy</li>
+                        <li class="list-group-item"><strong>Sensitivity:</strong> Advanced tilt & pressure control</li>
+                        <li class="list-group-item"><strong>Latency:</strong> Ultra-low latency response</li>
+                        <li class="list-group-item"><strong>Usage:</strong> Ideal for digital art and note-taking</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <!-- Add to Cart Form -->
+                    <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal 11 -->
+    <div class="modal fade" id="productModal11" tabindex="-1" aria-labelledby="productModal11Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="productModal8Label">Apple Pencil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="text-center mb-3">
+                        <img src="{% static 'images/MX2D3.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Apple Pencil">
+                        <h4 class="text-success fw-bold">$99.00</h4>
+                    </div>
+                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2">
+                        <li class="list-group-item"><strong>Precision:</strong> Pixel-perfect accuracy</li>
+                        <li class="list-group-item"><strong>Sensitivity:</strong> Advanced tilt & pressure control</li>
+                        <li class="list-group-item"><strong>Latency:</strong> Ultra-low latency response</li>
+                        <li class="list-group-item"><strong>Usage:</strong> Ideal for digital art and note-taking</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <!-- Add to Cart Form -->
+                    <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal 12 -->>
+    <div class="modal fade" id="productModal12" tabindex="-1" aria-labelledby="productModal12Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="productModal8Label">Apple Pencil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="text-center mb-3">
+                        <img src="{% static 'images/MX2D3.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Apple Pencil">
+                        <h4 class="text-success fw-bold">$99.00</h4>
+                    </div>
+                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2">
+                        <li class="list-group-item"><strong>Precision:</strong> Pixel-perfect accuracy</li>
+                        <li class="list-group-item"><strong>Sensitivity:</strong> Advanced tilt & pressure control</li>
+                        <li class="list-group-item"><strong>Latency:</strong> Ultra-low latency response</li>
+                        <li class="list-group-item"><strong>Usage:</strong> Ideal for digital art and note-taking</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <!-- Add to Cart Form -->
+                    <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+
+    
+    
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

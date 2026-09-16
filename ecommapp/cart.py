@@ -23,7 +23,7 @@ class Cart:
         self.session[settings.CART_SESSION_ID] = self.cart
 
     def add(self, product, quantity=1, override_quantity=False):
-        """Add a product to the cart or update its quantity."""
+        """Add a product to the cart or increment its quantity."""
         product_id = str(product.id)
         if product_id not in self.cart:
             # Save price as string so session remains JSON-serializable
@@ -35,15 +35,26 @@ class Cart:
             self.cart[product_id]['quantity'] += quantity
         self.save()
 
+    def decrement(self, product):
+        """Decrements product quantity by 1. Removes item completely if quantity reaches 0."""
+        product_id = str(product.id)
+        if product_id in self.cart:
+            self.cart[product_id]['quantity'] -= 1
+            
+            # If quantity drops to 0 or lower, delete the product from cart
+            if self.cart[product_id]['quantity'] <= 0:
+                del self.cart[product_id]
+            self.save()
+
     def remove(self, product):
-        """Remove a product from the cart."""
+        """Remove a product entirely from the cart regardless of quantity."""
         product_id = str(product.id)
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
 
     def save(self):
-        """Mark session as modified to ensure it saves."""
+        """Mark session as modified to ensure changes persist in DB/session backend."""
         self.session.modified = True
 
     def __iter__(self):
@@ -71,14 +82,14 @@ class Cart:
                 yield item
 
     def __len__(self):
-        """Count all items in the cart safely."""
+        """Count all item quantities in the cart safely."""
         return sum(
             item['quantity'] for item in self.cart.values() 
             if isinstance(item, dict) and 'quantity' in item
         )
 
     def get_total_price(self):
-        """Calculate total cost of items in cart safely."""
+        """Calculate total cost of all items in cart safely."""
         return sum(
             Decimal(str(item['price'])) * item['quantity'] 
             for item in self.cart.values() 
@@ -86,7 +97,7 @@ class Cart:
         )
 
     def clear(self):
-        """Remove cart from session."""
+        """Remove cart completely from session on successful checkout."""
         if settings.CART_SESSION_ID in self.session:
             del self.session[settings.CART_SESSION_ID]
             self.save()
