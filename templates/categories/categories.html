@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Categories - My Store</title>
+  
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent-blue: #2563eb;
+      --accent-hover: #1d4ed8;
+      --border-color: #e2e8f0;
+      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0; 
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Main Layout Layout */
+    .page-wrapper {
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* Header Section */
+    .category-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .category-badge {
+      display: inline-block;
+      background-color: #dbeafe;
+      color: var(--accent-blue);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      margin-bottom: 1rem;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Categories Grid */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Category Cards */
+    .category-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 1.25rem;
+      padding: 2.5rem 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Accent top border highlight on hover */
+    .category-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #2563eb);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--hover-shadow);
+      border-color: #cbd5e1;
+    }
+
+    .category-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Category Icon Bubble */
+    .icon-wrapper {
+      width: 80px;
+      height: 80px;
+      background-color: #f1f5f9;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .category-card:hover .icon-wrapper {
+      background-color: #eff6ff;
+      transform: scale(1.08);
+    }
+
+    .category-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .item-count {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Action Pill Button */
+    .btn-action {
+      margin-top: auto;
+      width: 100%;
+      background-color: #f1f5f9;
+      color: var(--text-main);
+      font-weight: 600;
+      padding: 0.75rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .category-card:hover .btn-action {
+      background-color: var(--accent-blue);
+      color: #ffffff;
+    }
+
+    .btn-action span.arrow {
+      transition: transform 0.2s ease;
+    }
+
+    .category-card:hover .btn-action span.arrow {
+      transform: translateX(4px);
+    }
+
+    /* Features Strip */
+    .features-strip {
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .feature-item {
+      padding: 1rem;
+    }
+
+    .feature-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .feature-desc {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- INCLUDE YOUR MODERN NAVBAR HERE -->
+  {% include 'navbar.html' %}
+
+  <main class="page-wrapper">
+    
+    <!-- HEADER -->
+    <header class="category-header">
+      <span class="category-badge">Catalog</span>
+      <h1 class="title">Shop by Category</h1>
+      <p class="subtitle">Discover our wide collection of premium electronics designed to power your lifestyle.</p>
+    </header>
+
+    <!-- CATEGORIES GRID -->
+    <div class="categories-grid">
+      
+      <!-- 1. Laptops -->
+      <a href="{% url 'category_laptops' %}" class="category-card">
+        <div class="icon-wrapper">💻</div>
+        <h2 class="category-name">Laptops</h2>
+        <span class="item-count">High-performance ultrabooks & rigs</span>
+        <div class="btn-action">
+          Explore Laptops <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 2. Phones -->
+      <a href="{% url 'category_phones' %}" class="category-card">
+        <div class="icon-wrapper">📱</div>
+        <h2 class="category-name">Smartphones</h2>
+        <span class="item-count">Latest flagship devices & wearables</span>
+        <div class="btn-action">
+          Explore Phones <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 3. Accessories -->
+      <a href="{% url 'category_accessories' %}" class="category-card">
+        <div class="icon-wrapper">🎧</div>
+        <h2 class="category-name">Accessories</h2>
+        <span class="item-count">Audio, chargers, cases & adapters</span>
+        <div class="btn-action">
+          Explore Accessories <span class="arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- VALUE PROPOSITION FOOTER STRIP -->
+    <section class="features-strip">
+      <div class="feature-item">
+        <div class="feature-icon">🚚</div>
+        <div class="feature-title">Free Express Shipping</div>
+        <div class="feature-desc">On all orders over $50</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-title">Official Warranty</div>
+        <div class="feature-desc">100% authentic tech products</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔄</div>
+        <div class="feature-title">30-Day Returns</div>
+        <div class="feature-desc">Hassle-free return policy</div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

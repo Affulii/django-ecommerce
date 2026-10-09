@@ -1,31 +1,64 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="container">
-    <h1 class="title">Shop by Category</h1>
-    <p class="subtitle">Select a category below to explore our products.</p>
+<div class="row mb-4 align-items-center">
+    <div class="col-md-8">
+        <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-bold small mb-2">
+            <i class="bi bi-grid-fill me-1"></i> Directory
+        </span>
+        <h1 class="fw-extrabold section-title m-0">Shop by Category</h1>
+        <p class="text-muted small mt-1 mb-0">Select a category below to explore curated tech gear built for your needs.</p>
+    </div>
+</div>
 
-    <div class="categories-grid">
-            <!-- 1. Laptops Button -->
-        <a href="{% url 'category_laptops' %}" class="category-card">
-            <div class="category-icon">💻</div>
-            <div class="category-name">Laptops</div>
-            <span class="btn">View Laptops</span>
-        </a>
+<div class="row g-4 mb-5">
+    <!-- 1. Laptops Category -->
+    <div class="col-lg-4 col-md-6">
+        <div class="modern-card h-100 p-4 d-flex flex-column justify-content-between">
+            <div>
+                <div class="value-icon-box mb-3" style="width: 56px; height: 56px; font-size: 1.5rem; background: #eff6ff; color: #2563eb; border-radius: 14px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-laptop"></i>
+                </div>
+                <h4 class="fw-bold text-dark mb-2">Laptops & Workstations</h4>
+                <p class="text-muted small mb-4">High-performance gaming laptops, Ultrabooks, and MacBooks for power users.</p>
+            </div>
+            <a href="{% url 'category_laptops' %}" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold py-2">
+                Explore Laptops <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+    </div>
 
-        <!-- 2. Phones Button -->
-        <a href="{% url 'category_phones' %}" class="category-card">
-            <div class="category-icon">📱</div>
-            <div class="category-name">Phones</div>
-            <span class="btn">View Phones</span>
-        </a>
+    <!-- 2. Phones Category -->
+    <div class="col-lg-4 col-md-6">
+        <div class="modern-card h-100 p-4 d-flex flex-column justify-content-between">
+            <div>
+                <div class="value-icon-box mb-3" style="width: 56px; height: 56px; font-size: 1.5rem; background: #eff6ff; color: #2563eb; border-radius: 14px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-phone"></i>
+                </div>
+                <h4 class="fw-bold text-dark mb-2">Smartphones</h4>
+                <p class="text-muted small mb-4">Flagship mobile devices with pro camera systems and all-day battery life.</p>
+            </div>
+            <a href="{% url 'category_phones' %}" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold py-2">
+                Explore Phones <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+    </div>
 
-        <!-- 3. Accessories Button -->
-        <a href="{% url 'category_accessories' %}" class="category-card">
-            <div class="category-icon">🎧</div>
-            <div class="category-name">Accessories</div>
-            <span class="btn">View Accessories</span>
-        </a>
+    <!-- 3. Accessories Category -->
+    <div class="col-lg-4 col-md-6">
+        <div class="modern-card h-100 p-4 d-flex flex-column justify-content-between">
+            <div>
+                <div class="value-icon-box mb-3" style="width: 56px; height: 56px; font-size: 1.5rem; background: #eff6ff; color: #2563eb; border-radius: 14px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-headphones"></i>
+                </div>
+                <h4 class="fw-bold text-dark mb-2">Accessories & Audio</h4>
+                <p class="text-muted small mb-4">Noise-canceling headphones, smart watches, power adapters, and keyboards.</p>
+            </div>
+            <a href="{% url 'category_accessories' %}" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold py-2">
+                Explore Accessories <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  .tracking-hero {
+    background: linear-gradient(135deg, #212529 0%, #343a40 100%);
+    border-radius: 16px;
+  }
+  .tracking-card {
+    border-radius: 16px;
+  }
+  .step-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+    z-index: 2;
+  }
+  /* STRICT IMAGE THUMBNAIL CONSTRAINTS */
+  .item-img {
+    width: 56px !important;
+    height: 56px !important;
+    max-width: 56px !important;
+    max-height: 56px !important;
+    object-fit: cover !important;
+    flex-shrink: 0 !important;
+  }
+</style>
+
+<main class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+
+      <!-- HERO HEADER & SEARCH INPUT -->
+      <div class="tracking-hero text-white p-4 p-md-5 mb-4 shadow-sm text-center">
+        <div class="bg-danger bg-opacity-25 text-danger rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+          <i class="bi bi-truck fs-2"></i>
+        </div>
+        <h2 class="fw-bold mb-2">Track Your Package</h2>
+        <p class="text-white-50 small mb-4">Enter your order reference ID below for real-time delivery status updates.</p>
+
+        <form action="" method="get" class="row g-2 justify-content-center">
+          <div class="col-sm-8 col-md-9">
+            <div class="input-group input-group-lg">
+              <span class="input-group-text bg-white border-0 text-muted fs-5"><i class="bi bi-search"></i></span>
+              <input 
+                type="text" 
+                name="order_id" 
+                value="{{ order_id|default:'' }}" 
+                class="form-control border-0 fs-6 shadow-none" 
+                placeholder="Enter Order ID (e.g. 101)" 
+                required
+              >
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-3">
+            <button type="submit" class="btn btn-danger btn-lg w-100 fw-semibold fs-6 h-100">
+              Track Order
+            </button>
+          </div>
+        </form>
+
+        <!-- ERROR MESSAGE -->
+        {% if order_error %}
+          <div class="alert alert-danger alert-dismissible fade show mt-4 mb-0 text-center small border-0" role="alert">
+            <i class="bi bi-exclamation-circle-fill me-1"></i> {{ order_error }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- ORDER DETAILS RESULT CARD -->
+      {% if order %}
+        <div id="trackingCard" class="card tracking-card border-0 shadow-lg overflow-hidden position-relative mb-5 bg-white">
+          
+          <!-- CARD HEADER -->
+          <div class="card-header bg-white border-bottom p-4 d-flex justify-content-between align-items-center pe-5">
+            <div>
+              <span class="text-muted small fw-semibold text-uppercase d-block mb-1">Order Details</span>
+              <h4 class="m-0 fw-bold text-dark">#ORD-{{ order.id }}</h4>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+              {% if order.status == 'Delivered' %}
+                <span class="badge bg-success-subtle text-success fs-6 px-3 py-2 rounded-pill fw-semibold"><i class="bi bi-check-circle-fill me-1"></i> Delivered</span>
+              {% elif order.status == 'Out for Delivery' %}
+                <span class="badge bg-info-subtle text-info fs-6 px-3 py-2 rounded-pill fw-semibold"><i class="bi bi-truck me-1"></i> Out for Delivery</span>
+              {% elif order.status == 'Approved' %}
+                <span class="badge bg-primary-subtle text-primary fs-6 px-3 py-2 rounded-pill fw-semibold"><i class="bi bi-shield-check me-1"></i> Approved</span>
+              {% elif order.status == 'Cancelled' %}
+                <span class="badge bg-danger-subtle text-danger fs-6 px-3 py-2 rounded-pill fw-semibold"><i class="bi bi-x-circle me-1"></i> Cancelled</span>
+              {% else %}
+                <span class="badge bg-warning-subtle text-warning fs-6 px-3 py-2 rounded-pill fw-semibold"><i class="bi bi-hourglass-split me-1"></i> {{ order.status|default:"Processing" }}</span>
+              {% endif %}
+            </div>
+
+            <button type="button" 
+                    class="btn-close position-absolute top-0 end-0 m-3" 
+                    aria-label="Close"
+                    onclick="document.getElementById('trackingCard').style.display='none';">
+            </button>
+          </div>
+
+          <!-- CARD BODY -->
+          <div class="card-body p-4 p-md-5">
+
+            <!-- Summary Info Row -->
+            <div class="row g-3 p-3 bg-light rounded-3 mb-4 text-center text-sm-start">
+              <div class="col-6 col-sm-4">
+                <p class="text-muted small mb-1">Placed On</p>
+                <h6 class="fw-bold text-dark m-0">{{ order.created_at|date:"F j, Y" }}</h6>
+              </div>
+              <div class="col-6 col-sm-4">
+                <p class="text-muted small mb-1">Total Amount</p>
+                <h6 class="fw-bold text-danger m-0">${{ order.total_price }}</h6>
+              </div>
+              <div class="col-12 col-sm-4 text-sm-end border-top border-sm-0 pt-2 pt-sm-0">
+                <p class="text-muted small mb-1">Payment Method</p>
+                <h6 class="fw-bold text-dark m-0"><i class="bi bi-credit-card me-1"></i> Card Ending {{ **** }}</h6>
+              </div>
+            </div>
+
+            <!-- DYNAMIC 4-STAGE STEP-BY-STEP PROGRESS BAR -->
+            <div class="my-5 px-2">
+              <div class="position-relative mx-3">
+                <div class="progress bg-light" style="height: 6px;">
+                  <div class="progress-bar bg-danger" role="progressbar" 
+                    style="width: {% if order.status == 'Delivered' %}100%{% elif order.status == 'Out for Delivery' %}66%{% elif order.status == 'Approved' %}33%{% else %}0%{% endif %}; transition: width 0.4s ease;" 
+                    aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+
+                <!-- Stage Icons -->
+                <button type="button" class="position-absolute top-0 start-0 translate-middle btn step-icon rounded-circle d-flex align-items-center justify-content-center {% if order.status == 'Processing' or order.status == 'Approved' or order.status == 'Out for Delivery' or order.status == 'Delivered' %}btn-danger shadow-sm{% else %}btn-secondary{% endif %}" style="pointer-events: none;">
+                  <i class="bi bi-clock-history"></i>
+                </button>
+                <button type="button" class="position-absolute top-0 translate-middle btn step-icon rounded-circle d-flex align-items-center justify-content-center {% if order.status == 'Approved' or order.status == 'Out for Delivery' or order.status == 'Delivered' %}btn-danger shadow-sm{% else %}btn-secondary{% endif %}" style="left: 33.33%; pointer-events: none;">
+                  <i class="bi bi-shield-check"></i>
+                </button>
+                <button type="button" class="position-absolute top-0 translate-middle btn step-icon rounded-circle d-flex align-items-center justify-content-center {% if order.status == 'Out for Delivery' or order.status == 'Delivered' %}btn-danger shadow-sm{% else %}btn-secondary{% endif %}" style="left: 66.66%; pointer-events: none;">
+                  <i class="bi bi-truck"></i>
+                </button>
+                <button type="button" class="position-absolute top-0 start-100 translate-middle btn step-icon rounded-circle d-flex align-items-center justify-content-center {% if order.status == 'Delivered' %}btn-success shadow-sm{% else %}btn-secondary{% endif %}" style="pointer-events: none;">
+                  <i class="bi bi-check-lg"></i>
+                </button>
+              </div>
+
+              <!-- Stage Labels -->
+              <div class="d-flex justify-content-between text-center small mt-4 fw-semibold">
+                <div style="width: 25%;" class="{% if order.status == 'Processing' %}text-danger fw-bold{% else %}text-muted{% endif %}">Processing</div>
+                <div style="width: 25%;" class="{% if order.status == 'Approved' %}text-danger fw-bold{% else %}text-muted{% endif %}">Approved</div>
+                <div style="width: 25%;" class="{% if order.status == 'Out for Delivery' %}text-danger fw-bold{% else %}text-muted{% endif %}">Out for Delivery</div>
+                <div style="width: 25%;" class="{% if order.status == 'Delivered' %}text-success fw-bold{% else %}text-muted{% endif %}">Delivered</div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- ORDERED ITEMS LIST -->
+            <h6 class="fw-bold mb-3"><i class="bi bi-bag-check text-danger me-2"></i>Items in this order:</h6>
+            <div class="list-group list-group-flush">
+              {% for item in order.items.all %}
+                <div class="list-group-item d-flex justify-content-between align-items-center px-0 bg-transparent py-3 border-bottom">
+                  <div class="d-flex align-items-center gap-3">
+                    {% if item.product.image %}
+                      <img 
+                        src="{{ item.product.image.url }}" 
+                        alt="{{ item.product.name }}" 
+                        class="rounded-3 item-img shadow-sm"
+                        style="width: 56px; height: 56px; max-width: 56px; max-height: 56px; object-fit: cover;"
+                      >
+                    {% else %}
+                      <div 
+                        class="bg-light text-secondary rounded-3 d-flex align-items-center justify-content-center item-img border"
+                        style="width: 56px; height: 56px; max-width: 56px; max-height: 56px;"
+                      >
+                        <i class="bi bi-box-seam fs-4"></i>
+                      </div>
+                    {% endif %}
+                    <div>
+                      <h6 class="mb-1 fw-bold text-dark">{{ item.product.name }}</h6>
+                      <small class="text-muted">Quantity: {{ item.quantity }} × ${{ item.price }}</small>
+                    </div>
+                  </div>
+                  <span class="fw-bold text-dark ms-2">${{ item.price }}</span>
+                </div>
+              {% empty %}
+                <p class="text-muted small mb-0 py-2">No item details recorded for this order.</p>
+              {% endfor %}
+            </div>
+
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</main>
+{% endblock %}

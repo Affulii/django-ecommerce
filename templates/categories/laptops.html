@@ -1,44 +1,206 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Varieties of Laptops - MY STORE</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+      :root {
+        --brand-primary: #0f172a;
+        --brand-accent: #2563eb;
+        --brand-accent-hover: #1d4ed8;
+        --brand-danger: #ef4444;
+        --bg-main: #f8fafc;
+        --surface-card: #ffffff;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border-color: rgba(226, 232, 240, 0.8);
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06);
+        --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+        --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.02);
+        --radius-lg: 20px;
+        --radius-md: 12px;
+        --transition-base: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        letter-spacing: -0.011em;
+        overflow-x: hidden;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* TOP TICKER BAR */
+      .top-ticker {
+        background: var(--brand-primary);
+        color: #f8fafc;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+      }
+
+      /* SECTION HEADERS */
+      .section-title {
+        font-weight: 800;
+        font-size: 1.75rem;
+        letter-spacing: -0.025em;
+      }
+
+      /* MODERN CARDS FROM HOME.HTML */
+      .modern-card {
+        background: var(--surface-card);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-color);
+        transition: var(--transition-base);
+        position: relative;
+        overflow: hidden;
+      }
+      .modern-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(37, 99, 235, 0.15);
+      }
+
+      .card-media-wrapper {
+        background: #f1f5f9;
+        height: 190px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .card-media-wrapper img {
+        max-height: 80%;
+        max-width: 80%;
+        object-fit: contain;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .modern-card:hover .card-media-wrapper img {
+        transform: scale(1.1);
+      }
+
+      .price-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: var(--brand-primary);
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.8125rem;
+        padding: 4px 12px;
+        border-radius: 50px;
+        box-shadow: var(--shadow-sm);
+        z-index: 5;
+      }
+
+      .wishlist-btn {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        transition: var(--transition-base);
+        z-index: 5;
+      }
+      .wishlist-btn:hover {
+        color: var(--brand-danger);
+        transform: scale(1.1);
+      }
+
+      /* FOOTER */
+      .app-footer {
+        background-color: var(--brand-primary);
+        color: #94a3b8;
+        font-size: 0.875rem;
+      }
+      .app-footer h6 {
+        color: #ffffff;
+        font-weight: 700;
+      }
+      .app-footer a {
+        color: #94a3b8;
+        text-decoration: none;
+      }
+      .app-footer a:hover {
+        color: #ffffff;
+      }
+    </style>
 </head>
-<body class="bg-light">
-    {% include 'navbar.html' %}
+<body>
 
-    <section class="bg-dark text-white py-4 text-center">
-        <div class="container">
-            <h1 class="fw-bold">Laptops & Computers</h1>
-            <p class="text-white-50 mb-0">High-performance laptops for gaming, design, and daily work.</p>
+    <!-- TOP ANNOUNCEMENT TICKER -->
+    <div class="top-ticker py-2 text-center">
+      <div class="container">
+        <span>⚡ <strong>Spring Sale is Live:</strong> High-performance laptops designed for gaming, creation, and work.</span>
+      </div>
+    </div>
+
+    {% include 'navbar.html' %} 
+
+    <!-- MAIN BODY -->
+    <main class="container px-3 px-lg-4 my-5 flex-grow-1">
+
+        <!-- HEADER BANNER -->
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+              <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-pill fw-bold small mb-2">Category</span>
+              <h2 class="section-title m-0">Laptops & Computers</h2>
+              <p class="text-muted small m-0 mt-1">High-performance laptops for gaming, design, and daily work.</p>
+            </div>
+            <a href="{% url 'shop' %}" class="btn btn-link text-primary fw-bold text-decoration-none p-0">View Full Catalog <i class="bi bi-arrow-right ms-1"></i></a>
         </div>
-    </section>
 
-    <main class="container my-5">
+        <!-- PRODUCT GRID -->
         <div class="row g-4">
+
             <!-- Laptop Item 1 -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/gaming pp.webp' %}" class="card-img-top mx-auto" style="height: 200px; object-fit: contain;" alt="Hp Victus Gaming Laptop">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <span class="badge bg-danger mb-2">High Performance</span>
-                            <h5 class="fw-bold mb-1 text-dark">Hp Victus Gaming Laptop</h5>
-                            <p class="text-muted small mb-2">32GB RAM, RTX 4080 GPU, 1TB SSD</p>
+                <div class="modern-card h-100">
+                    <div class="price-badge">$999.99</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/gaming pp.webp' %}" alt="Hp Victus Gaming Laptop">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold fs-5 text-success mb-2">$999.99</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#laptopModal1">View Details</button>
-                                <form action="{% url 'cart_add' product_id=16 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</a>
-                                </form>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <span class="badge bg-danger mb-1 rounded-pill">High Performance</span>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">HP Victus Gaming</h5>
+                                    <p class="card-text text-muted small mb-2">32GB RAM, RTX 4080, 1TB SSD</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#laptopModal1">Details</button>
+                                    <form action="{% url 'cart_add' product_id=16 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -47,22 +209,29 @@
 
             <!-- Laptop Item 2 -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/macbook-pro-size-1.webp' %}" class="card-img-top mx-auto" style="height: 200px; object-fit: contain;" alt="MacBook Pro 13-inch">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <span class="badge bg-danger mb-2">High Performance</span>
-                            <h5 class="fw-bold mb-1 text-dark">MacBook Pro 13"</h5>
-                            <p class="text-muted small mb-2">16GB Unified Memory, M-Series Chip, 512GB SSD</p>
+                <div class="modern-card h-100">
+                    <div class="price-badge">$1,499.99</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/macbook-pro-size-1.webp' %}" alt="MacBook Pro 13-inch">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold fs-5 text-success mb-2">$1,499.99</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#laptopModal2">View Details</button>
-                                <form action="{% url 'cart_add' product_id=1 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</a>
-                                </form> 
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <span class="badge bg-danger mb-1 rounded-pill">High Performance</span>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">MacBook Pro 13"</h5>
+                                    <p class="card-text text-muted small mb-2">16GB Memory, M-Series, 512GB</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#laptopModal2">Details</button>
+                                    <form action="{% url 'cart_add' product_id=1 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -71,80 +240,98 @@
 
             <!-- Laptop Item 3 -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/gaming laptop.webp' %}" class="card-img-top mx-auto" style="height: 200px; object-fit: contain;" alt="Lenovo Pro Gaming Laptop">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <span class="badge bg-danger mb-2">High Performance</span>
-                            <h5 class="fw-bold mb-1 text-dark">Lenovo Pro Gaming Laptop</h5>
-                            <p class="text-muted small mb-2">32GB RAM, RTX 4080 GPU, 1TB SSD</p>
+                <div class="modern-card h-100">
+                    <div class="price-badge">$1,299.99</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/gaming laptop.webp' %}" alt="Lenovo Pro Gaming Laptop">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold fs-5 text-success mb-2">$1,299.99</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#laptopModal3">View Details</button>
-                                <form action="{% url 'cart_add' product_id=18 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</a>
-                                </form>    
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <span class="badge bg-danger mb-1 rounded-pill">High Performance</span>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">Lenovo Pro Gaming</h5>
+                                    <p class="card-text text-muted small mb-2">32GB RAM, RTX 4080, 1TB SSD</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#laptopModal3">Details</button>
+                                    <form action="{% url 'cart_add' product_id=18 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--- macbook air -->
+
+            <!-- Laptop Item 4 -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/mac_air.png' %}" class="card-img-top mx-auto" style="height: 200px; object-fit: contain;" alt="MacBook Air">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <span class="badge bg-danger mb-2">High Performance</span>
-                            <h5 class="fw-bold mb-1 text-dark">Macbook Air</h5>
-                            <p class="text-muted small mb-2">16GB unified memory, M5 with 10 core CPU, 512 SSD</p>
+                <div class="modern-card h-100">
+                    <div class="price-badge">$1,299.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/mac_air.png' %}" alt="MacBook Air">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold fs-5 text-success mb-2">$1,299.00</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#laptopModal4">View Details</button>
-                                <form action="{% url 'cart_add' product_id=25 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</a>
-                                </form>    
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <span class="badge bg-danger mb-1 rounded-pill">High Performance</span>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">MacBook Air</h5>
+                                    <p class="card-text text-muted small mb-2">16GB Memory, M5 Chip, 512GB</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#laptopModal4">Details</button>
+                                    <form action="{% url 'cart_add' product_id=25 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
+
+    <!-- MODALS -->
 
     <!-- Modal 1: HP Victus -->
     <div class="modal fade" id="laptopModal1" tabindex="-1" aria-labelledby="laptopModal1Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold" id="laptopModal1Label">Hp Victus Gaming Laptop</h5>
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="laptopModal1Label">HP Victus Gaming Laptop</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
-                        <img src="{% static 'images/gaming pp.webp' %}" class="img-fluid mb-2" style="max-height: 200px; object-fit: contain;" alt="Hp Victus Gaming Laptop">
-                        <h4 class="text-success fw-bold">$999.99</h4>
+                        <img src="{% static 'images/gaming pp.webp' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Hp Victus Gaming Laptop">
+                        <h4 class="text-primary fw-bold">$999.99</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Processor:</strong> Intel Core i7 / AMD Ryzen 7</li>
-                        <li class="list-group-item"><strong>Memory:</strong> 32GB RAM</li>
-                        <li class="list-group-item"><strong>Graphics:</strong> NVIDIA GeForce RTX 4080</li>
-                        <li class="list-group-item"><strong>Storage:</strong> 1TB NVMe SSD</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Processor:</strong> Intel Core i7 / AMD Ryzen 7</li>
+                        <li class="list-group-item bg-transparent"><strong>Memory:</strong> 32GB RAM</li>
+                        <li class="list-group-item bg-transparent"><strong>Graphics:</strong> NVIDIA GeForce RTX 4080</li>
+                        <li class="list-group-item bg-transparent"><strong>Storage:</strong> 1TB NVMe SSD</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
                     <form action="{% url 'cart_add' product_id=16 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class=" btn btn-dark btn-sm w-100">Buy Now</button>
-                    </form> 
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -153,30 +340,30 @@
     <!-- Modal 2: MacBook Pro -->
     <div class="modal fade" id="laptopModal2" tabindex="-1" aria-labelledby="laptopModal2Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
                     <h5 class="modal-title fw-bold" id="laptopModal2Label">MacBook Pro 13"</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
-                        <img src="{% static 'images/macbook-pro-size-1.webp' %}" class="img-fluid mb-2" style="max-height: 200px; object-fit: contain;" alt="MacBook Pro 13-inch">
-                        <h4 class="text-success fw-bold">$1,499.99</h4>
+                        <img src="{% static 'images/macbook-pro-size-1.webp' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="MacBook Pro 13-inch">
+                        <h4 class="text-primary fw-bold">$1,499.99</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Display:</strong> 13.3-inch Retina Display</li>
-                        <li class="list-group-item"><strong>Processor:</strong> Apple M-Series Chip</li>
-                        <li class="list-group-item"><strong>Memory:</strong> 16GB Unified Memory</li>
-                        <li class="list-group-item"><strong>Storage:</strong> 512GB SSD</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Display:</strong> 13.3-inch Retina Display</li>
+                        <li class="list-group-item bg-transparent"><strong>Processor:</strong> Apple M-Series Chip</li>
+                        <li class="list-group-item bg-transparent"><strong>Memory:</strong> 16GB Unified Memory</li>
+                        <li class="list-group-item bg-transparent"><strong>Storage:</strong> 512GB SSD</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
                     <form action="{% url 'cart_add' product_id=1 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" clas="btn btn-dark btn-sm w-100">Buy Now</button>
-                    </form> 
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -185,66 +372,79 @@
     <!-- Modal 3: Lenovo Pro Gaming -->
     <div class="modal fade" id="laptopModal3" tabindex="-1" aria-labelledby="laptopModal3Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
                     <h5 class="modal-title fw-bold" id="laptopModal3Label">Lenovo Pro Gaming Laptop</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
-                        <img src="{% static 'images/gaming laptop.webp' %}" class="img-fluid mb-2" style="max-height: 200px; object-fit: contain;" alt="Lenovo Pro Gaming Laptop">
-                        <h4 class="text-success fw-bold">$1,299.99</h4>
+                        <img src="{% static 'images/gaming laptop.webp' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Lenovo Pro Gaming Laptop">
+                        <h4 class="text-primary fw-bold">$1,299.99</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Display:</strong> High-Refresh-Rate Gaming Screen</li>
-                        <li class="list-group-item"><strong>Memory:</strong> 32GB RAM</li>
-                        <li class="list-group-item"><strong>Graphics:</strong> NVIDIA GeForce RTX 4080</li>
-                        <li class="list-group-item"><strong>Storage:</strong> 1TB SSD</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Display:</strong> High-Refresh-Rate Gaming Screen</li>
+                        <li class="list-group-item bg-transparent"><strong>Memory:</strong> 32GB RAM</li>
+                        <li class="list-group-item bg-transparent"><strong>Graphics:</strong> NVIDIA GeForce RTX 4080</li>
+                        <li class="list-group-item bg-transparent"><strong>Storage:</strong> 1TB SSD</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
                     <form action="{% url 'cart_add' product_id=18 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                    </form> 
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- mac air modal -->
-    <div class="modal fade" id="laptopModal2" tabindex="-1" aria-labelledby="laptopModal2Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold" id="laptopModal2Label">MacBook Air 13"</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-start">
-                    <div class="text-center mb-3">
-                        <img src="{% static 'images/mac_air.png' %}" class="img-fluid mb-2" style="max-height: 200px; object-fit: contain;" alt="MacBook Air 13-inch">
-                        <h4 class="text-success fw-bold">$1,299.00</h4>
-                    </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Display:</strong> 13.3-inch Retina Display</li>
-                        <li class="list-group-item"><strong>Processor:</strong> Apple M5 Chip</li>
-                        <li class="list-group-item"><strong>Memory:</strong> 16GB Unified Memory</li>
-                        <li class="list-group-item"><strong>Storage:</strong> 512GB SSD</li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <form action="{% url 'cart_add' product_id=25 %}" method="POST" class="m-0 p-0">
-                        {% csrf_token %}
-                        <button type="submit" clas="btn btn-dark btn-sm w-100">Buy Now</button>
-                    </form> 
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal 4: MacBook Air -->
+    <div class="modal fade" id="laptopModal4" tabindex="-1" aria-labelledby="laptopModal4Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="laptopModal4Label">MacBook Air 13"</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="text-center mb-3">
+                        <img src="{% static 'images/mac_air.png' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="MacBook Air 13-inch">
+                        <h4 class="text-primary fw-bold">$1,299.00</h4>
+                    </div>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Display:</strong> 13.3-inch Retina Display</li>
+                        <li class="list-group-item bg-transparent"><strong>Processor:</strong> Apple M5 Chip</li>
+                        <li class="list-group-item bg-transparent"><strong>Memory:</strong> 16GB Unified Memory</li>
+                        <li class="list-group-item bg-transparent"><strong>Storage:</strong> 512GB SSD</li>
+                    </ul>
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=25 %}" method="POST" class="m-0 p-0">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER SECTION -->
+    <footer class="app-footer pt-5 pb-4 mt-auto">
+        <div class="container">
+            <div class="pt-2 text-center text-md-start">
+                <p class="text-muted small mb-0 opacity-75">
+                  &copy; 2026 MY STORE Inc. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

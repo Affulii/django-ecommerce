@@ -1,3 +1,4 @@
+import uuid
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.models import User 
@@ -5,14 +6,19 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
-from .models import Product, Order, OrderItem
-from .cart import Cart
 from django.db import transaction
-import uuid
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+
+# Internal app imports
+from .models import Product, Order, OrderItem, Address
+from .cart import Cart
+from .forms import UserProfileForm, AddressForm
+
 
 # Create your views here.
+
 def home(request):
     order_id = request.GET.get('order_id', '').strip()
     order = None
@@ -27,20 +33,20 @@ def home(request):
         else:
             order_error = "Please enter a valid numeric Order ID."
 
-    # --- 2. HANDLE PRODUCTS & PAGINATION ---
+    # --- HANDLE PRODUCTS & PAGINATION ---
     products_list = Product.objects.all().order_by('id')
     paginator = Paginator(products_list, 9)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    # --- 3. RETURN CONTEXT ---
-    return render(request, 'home.html', {  # Change 'shop.html' to your actual template name
+    return render(request, 'home.html', {
         'page_obj': page_obj,
         'order': order,
         'order_id': order_id,
         'order_error': order_error,
     })
     
+
 def login(request):
     if request.method == 'POST':
         username_input = request.POST.get('username')
@@ -57,6 +63,7 @@ def login(request):
             return redirect('/login/')
         
     return render(request, 'login.html')
+
 
 def sign_up(request):
     if request.method == 'POST':
@@ -88,10 +95,12 @@ def sign_up(request):
 
     return render(request, 'signup.html') 
     
+
 def logout_view(request):
     auth_logout(request)
     messages.info(request, "You have been logged out.")
     return redirect('/')
+
 
 def shop(request):
     query = request.GET.get('q', '').strip()
@@ -105,11 +114,13 @@ def shop(request):
     paginator = Paginator(products, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'shop.html', {'page_obj': page_obj, 'query':query,})
+    return render(request, 'shop.html', {'page_obj': page_obj, 'query': query})
+
 
 def cart_detail(request):
     cart = Cart(request)
     return render(request, 'cart/detail.html', {'cart': cart})
+
 
 @require_POST
 def cart_add(request, product_id):
@@ -139,13 +150,26 @@ def cart_add(request, product_id):
     messages.success(request, f"{product.name} added to your cart.")
     return redirect('cart_detail')
 
+def cart_increment(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Product, id=product_id)
+    success = cart.increment(product)
+    if not success:
+        messages.warning(
+            request, "You cannot purchase more than 3 units of this item per order."
+        )
+    else:
+        messages.success(request, f"Updated quantity for {product.name}.")
+    return redirect('cart_detail')
+
+
 def cart_decrement(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
-    
     cart.decrement(product)
     messages.info(request, f"Reduced quantity of '{product.name}'.")
     return redirect('cart_detail')
+
 
 @require_POST
 def cart_remove(request, product_id):
@@ -155,11 +179,13 @@ def cart_remove(request, product_id):
     messages.info(request, f"{product.name} removed from your cart.")
     return redirect('cart_detail')
 
+
 def buy_now(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     cart.add(product=product, quantity=1)
     return redirect('cart_detail')
+
 
 def checkout(request):
     cart = Cart(request)
@@ -169,15 +195,17 @@ def checkout(request):
         return redirect('shop')
 
     if request.method == 'POST':
-        # Use an atomic transaction to ensure Order and OrderItems save together cleanly
         with transaction.atomic():
-            # 1. Create and save the real Order instance in PostgreSQL
+            user = request.user if request.user.is_authenticated else None
+            
+            # Create order linked to user if logged in
             order = Order.objects.create(
+                user=user,
                 total_price=cart.get_total_price(),
                 status='Processing'
             )
 
-            # 2. Loop through cart items and create OrderItem records linked to the Order
+            # Create OrderItems
             order_items_summary = []
             for item in cart:
                 product = item['product'] if isinstance(item['product'], Product) else Product.objects.get(id=item['product_id'])
@@ -190,14 +218,14 @@ def checkout(request):
                 )
                 order_items_summary.append(f"- {product.name} (Qty: {item['quantity']}) - ${item['price']}")
 
-            # 3. Store the database Order ID in session for the order_success view
+            # Store order summary in session
             request.session['last_order'] = {
                 'order_id': order.id,
                 'total': str(order.total_price),
                 'items_count': len(cart),
             }
 
-            # 4. Send Instant Admin Email Notification
+            # Send Email
             subject = f"🚨 New Order Received! Order #{order.id}"
             items_text = "\n".join(order_items_summary)
             message = f"""
@@ -209,19 +237,15 @@ Total Items: {len(cart)}
 
 Purchased Items:
 {items_text}
-
-Manage this order in Django Admin:
-http://127.0.0.1:8080/admin/ecommapp/order/{order.id}/change/
 """
             send_mail(
                 subject=subject,
                 message=message,
                 from_email=getattr(settings, 'DEFAULT_FROM_EMAIL', 'noreply@mystore.com'),
                 recipient_list=[getattr(settings, 'ADMIN_NOTIFICATION_EMAIL', 'admin@mystore.com')],
-                fail_silently=True,  # Prevents checkout failure if SMTP server is offline
+                fail_silently=True,
             )
 
-            # 5. Clear cart session upon successful save and redirect
             cart.clear()
             return redirect('order_success')
 
@@ -233,10 +257,8 @@ http://127.0.0.1:8080/admin/ecommapp/order/{order.id}/change/
 
 
 def order_success(request):
-    # Retrieve recent order info from the session
     order_info = request.session.pop('last_order', None)
     
-    # If a user tries to access /order-success/ directly without placing an order
     if not order_info:
         return redirect('shop')
     
@@ -248,27 +270,111 @@ def order_success(request):
 
     return render(request, 'order_success.html', context)
 
+
 def about(request):
     return render(request, 'about.html')
+
 
 def categories(request):
     return render(request, 'categories.html')
 
+
 def category_detail(request, category_slug):
     category = get_object_or_404(category, slug=category_slug)
-    # Automatically catches any new product assigned to this category!
     products = Product.objects.filter(category=category) 
     return render(request, 'category_detail.html', {'category': category, 'products': products})
+
 
 def category_phones(request):
     return render(request, 'categories/phones.html')
 
+
 def category_laptops(request):
     return render(request, 'categories/laptops.html')
 
-#def category_accessories(request):
-#   return render(request, 'categories/accessories.html')
+
 def category_accessories(request):
-    # Filter products in your database matching accessories
-    products = Product.objects.filter(category__iexact='accessories') # Or Product.objects.all()
+    products = Product.objects.filter(category__iexact='accessories')
     return render(request, 'categories/accessories.html', {'products': products})
+
+
+@login_required(login_url='login')
+def profile(request):
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        
+        # 1. ADD NEW ADDRESS
+        if action == 'add_address':
+            Address.objects.create(
+                user=request.user,
+                full_name=request.POST.get('full_name'),
+                address_type=request.POST.get('address_type', 'Home'),
+                address_line_1=request.POST.get('address_line_1'),
+                address_line_2=request.POST.get('address_line_2', ''),
+                city=request.POST.get('city'),
+                state=request.POST.get('state'),
+                postal_code=request.POST.get('postal_code'),
+                phone_number=request.POST.get('phone_number')
+            )
+            return redirect('profile')
+
+        # 2. EDIT EXISTING ADDRESS
+        elif action == 'edit_address':
+            address_id = request.POST.get('address_id')
+            addr = get_object_or_404(Address, id=address_id, user=request.user)
+            addr.full_name = request.POST.get('full_name')
+            addr.address_type = request.POST.get('address_type', 'Home')
+            addr.address_line_1 = request.POST.get('address_line_1')
+            addr.address_line_2 = request.POST.get('address_line_2', '')
+            addr.city = request.POST.get('city')
+            addr.state = request.POST.get('state')
+            addr.postal_code = request.POST.get('postal_code')
+            addr.phone_number = request.POST.get('phone_number')
+            addr.save()
+            return redirect('profile')
+
+        # 3. EDIT USER PROFILE
+        else:
+            request.user.first_name = request.POST.get('first_name', request.user.first_name)
+            request.user.last_name = request.POST.get('last_name', request.user.last_name)
+            request.user.email = request.POST.get('email', request.user.email)
+            request.user.save()
+            return redirect('profile')
+
+    addresses = Address.objects.filter(user=request.user)
+    return render(request, 'profile.html', {'addresses': addresses})
+
+
+@login_required
+def delete_address(request, address_id):
+    addr = get_object_or_404(Address, id=address_id, user=request.user)
+    addr.delete()
+    return redirect('profile')
+
+def track_order(request):
+    order_id = request.GET.get('order_id')
+    order = None
+    order_error = None
+
+    if order_id:
+        try:
+            order = Order.objects.get(id=order_id)
+        except (Order.DoesNotExist, ValueError):
+            order_error = f"No order found matching reference ID #{order_id}."
+
+    context = {
+        'order': order,
+        'order_id': order_id,
+        'order_error': order_error,
+    }
+    return render(request, 'track_order.html', context)
+
+
+@login_required
+def order_history(request):
+    orders = (
+      Order.objects.filter(user=request.user)
+      .prefetch_related('items')
+      .order_by('-created_at')
+  )
+    return render(request, 'order_history.html', {'orders':orders})

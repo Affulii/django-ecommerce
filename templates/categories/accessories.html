@@ -1,44 +1,205 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Varieties of Accessories - MY STORE</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+      :root {
+        --brand-primary: #0f172a;
+        --brand-accent: #2563eb;
+        --brand-accent-hover: #1d4ed8;
+        --brand-danger: #ef4444;
+        --bg-main: #f8fafc;
+        --surface-card: #ffffff;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border-color: rgba(226, 232, 240, 0.8);
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06);
+        --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+        --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.02);
+        --radius-lg: 20px;
+        --radius-md: 12px;
+        --transition-base: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        letter-spacing: -0.011em;
+        overflow-x: hidden;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* TOP TICKER BAR */
+      .top-ticker {
+        background: var(--brand-primary);
+        color: #f8fafc;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+      }
+
+      /* SECTION HEADERS */
+      .section-title {
+        font-weight: 800;
+        font-size: 1.75rem;
+        letter-spacing: -0.025em;
+      }
+
+      /* MODERN CARDS FROM HOME.HTML */
+      .modern-card {
+        background: var(--surface-card);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-color);
+        transition: var(--transition-base);
+        position: relative;
+        overflow: hidden;
+      }
+      .modern-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(37, 99, 235, 0.15);
+      }
+
+      .card-media-wrapper {
+        background: #f1f5f9;
+        height: 190px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .card-media-wrapper img {
+        max-height: 80%;
+        max-width: 80%;
+        object-fit: contain;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .modern-card:hover .card-media-wrapper img {
+        transform: scale(1.1);
+      }
+
+      .price-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: var(--brand-primary);
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.8125rem;
+        padding: 4px 12px;
+        border-radius: 50px;
+        box-shadow: var(--shadow-sm);
+        z-index: 5;
+      }
+
+      .wishlist-btn {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        transition: var(--transition-base);
+        z-index: 5;
+      }
+      .wishlist-btn:hover {
+        color: var(--brand-danger);
+        transform: scale(1.1);
+      }
+
+      /* FOOTER */
+      .app-footer {
+        background-color: var(--brand-primary);
+        color: #94a3b8;
+        font-size: 0.875rem;
+      }
+      .app-footer h6 {
+        color: #ffffff;
+        font-weight: 700;
+      }
+      .app-footer a {
+        color: #94a3b8;
+        text-decoration: none;
+      }
+      .app-footer a:hover {
+        color: #ffffff;
+      }
+    </style>
 </head>
-<body class="bg-light">
-    {% include 'navbar.html' %}
+<body>
 
-    <section class="bg-dark text-white py-4 text-center">
-        <div class="container">
-            <h1 class="fw-bold">Smart Accessories</h1>
-            <p class="text-white-50 mb-0">Audio gear, smart watches, and essential accessories.</p>
+    <!-- TOP ANNOUNCEMENT TICKER -->
+    <div class="top-ticker py-2 text-center">
+      <div class="container">
+        <span>⚡ <strong>Spring Sale is Live:</strong> Save up to 40% on select Apple & Logitech accessories.</span>
+      </div>
+    </div>
+
+    {% include 'navbar.html' %} 
+
+    <!-- MAIN BODY -->
+    <main class="container px-3 px-lg-4 my-5 flex-grow-1">
+
+        <!-- HEADER BANNER -->
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+              <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-pill fw-bold small mb-2">Category</span>
+              <h2 class="section-title m-0">Smart Accessories</h2>
+              <p class="text-muted small m-0 mt-1">Audio gear, smart watches, and essential productivity tools.</p>
+            </div>
+            <a href="{% url 'shop' %}" class="btn btn-link text-primary fw-bold text-decoration-none p-0">View Full Catalog <i class="bi bi-arrow-right ms-1"></i></a>
         </div>
-    </section>
 
-    <main class="container my-5">
+        <!-- PRODUCT GRID -->
         <div class="row g-4">
+
             <!-- Accessory 1 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/ultwatch.webp' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Ultra SmartWatch">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <h6 class="fw-bold mb-1 text-dark">Ultra SmartWatch</h6>
-                            <p class="text-muted small mb-2">Fitness & Health Tracking</p>
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$599.99</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/ultwatch.webp' %}" alt="Ultra SmartWatch">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold text-success mb-2">$599.99</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal1">View Details</button>
-                                    <!-- Add to Cart Form -->
-                                    <form action="{% url 'cart_add' product_id=13 %}" method="POST" class="m-0 p-0">
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">Ultra SmartWatch</h5>
+                                    <p class="card-text text-muted small mb-2">Fitness & Health Tracking</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#productModal1">Details</button>
+                                    <form action="{% url 'cart_add' product_id=24 %}" method="POST" class="m-0 p-0">
                                         {% csrf_token %}
-                                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                                     </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -46,23 +207,29 @@
             </div>
 
             <!-- Accessory 2 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/airpodddd.webp' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Wireless Earbuds">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <h6 class="fw-bold mb-1 text-dark">Wireless Earbuds</h6>
-                            <p class="text-muted small mb-2">Noise Cancellation</p>
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$129.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/airpodddd.webp' %}" alt="Wireless Earbuds">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold text-success mb-2">$129.00</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal2">View Details</button>
-                                <!-- Add to Cart Form -->
-                                <form action="{% url 'cart_add' product_id=22 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                                </form>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">Wireless Earbuds</h5>
+                                    <p class="card-text text-muted small mb-2">Noise Cancellation</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#productModal2">Details</button>
+                                    <form action="{% url 'cart_add' product_id=1 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -70,23 +237,29 @@
             </div>
 
             <!-- Accessory 3 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/jbl_sd.webp' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="JBL Clip 5">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <h6 class="fw-bold mb-1 text-dark">JBL Clip 5</h6>
-                            <p class="text-muted small mb-2">Portable Speaker</p>
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$59.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/jbl_sd.webp' %}" alt="JBL Clip 5">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold text-success mb-2">$59.00</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal3">View Details</button>
-                                <!-- Add to Cart Form -->
-                                <form action="{% url 'cart_add' product_id=15 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                                </form>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">JBL Clip 5</h5>
+                                    <p class="card-text text-muted small mb-2">Portable Speaker</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#productModal3">Details</button>
+                                    <form action="{% url 'cart_add' product_id=19 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,23 +267,29 @@
             </div>
 
             <!-- Accessory 4 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/homepod-210.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="HomePod">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <h6 class="fw-bold mb-1 text-dark">HomePod</h6>
-                            <p class="text-muted small mb-2">Smart Home Speaker</p>
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$259.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/homepod-210.jpeg' %}" alt="HomePod">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold text-success mb-2">$259.00</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal4">View Details</button>
-                                <!-- Add to Cart Form -->
-                                <form action="{% url 'cart_add' product_id=3 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                                </form>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">HomePod</h5>
+                                    <p class="card-text text-muted small mb-2">Smart Home Speaker</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#productModal4">Details</button>
+                                    <form action="{% url 'cart_add' product_id=10 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -118,23 +297,29 @@
             </div>
 
             <!-- Accessory 5 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/MDEQ4.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Folio Case">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <h6 class="fw-bold mb-1 text-dark">Folio Case</h6>
-                            <p class="text-muted small mb-2">Protective Cover</p>
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$99.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/MDEQ4.jpeg' %}" alt="Folio Case">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold text-success mb-2">$99.00</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal5">View Details</button>
-                                <!-- Add to Cart Form -->
-                                <form action="{% url 'cart_add' product_id=12 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                                </form>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">Folio Case</h5>
+                                    <p class="card-text text-muted small mb-2">Protective Cover</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#productModal5">Details</button>
+                                    <form action="{% url 'cart_add' product_id=25 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -142,23 +327,29 @@
             </div>
 
             <!-- Accessory 6 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/MGKN4.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Power Adapter">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <h6 class="fw-bold mb-1 text-dark">40W Dynamic Power Adapter</h6>
-                            <p class="text-muted small mb-2">Fast Charging</p>
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$35.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/MGKN4.jpeg' %}" alt="Power Adapter">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold text-success mb-2">$35.00</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal6">View Details</button>
-                                <!-- Add to Cart Form -->
-                                <form action="{% url 'cart_add' product_id=11 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                                </form>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">40W Power Adapter</h5>
+                                    <p class="card-text text-muted small mb-2">Fast Charging</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#productModal6">Details</button>
+                                    <form action="{% url 'cart_add' product_id=21 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -166,23 +357,29 @@
             </div>
 
             <!-- Accessory 7 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/MUW33.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Beats Solo">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <h6 class="fw-bold mb-1 text-dark">Beats Solo</h6>
-                            <p class="text-muted small mb-2">On-Ear Headphones</p>
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$150.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/MUW33.jpeg' %}" alt="Beats Solo">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold text-success mb-2">$150.00</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal7">View Details</button>
-                                <!-- Add to Cart Form -->
-                                <form action="{% url 'cart_add' product_id=20 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                                </form>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">Beats Solo</h5>
+                                    <p class="card-text text-muted small mb-2">On-Ear Headphones</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#productModal7">Details</button>
+                                    <form action="{% url 'cart_add' product_id=23 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -190,151 +387,186 @@
             </div>
 
             <!-- Accessory 8 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/MX2D3.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Apple Pencil">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <h6 class="fw-bold mb-1 text-dark">Apple Pencil</h6>
-                            <p class="text-muted small mb-2">Stylus Pen</p>
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$99.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/MX2D3.jpeg' %}" alt="Apple Pencil">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold text-success mb-2">$99.00</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal8">View Details</button>
-                                <!-- Add to Cart Form -->
-                                <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                                </form>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">Apple Pencil</h5>
+                                    <p class="card-text text-muted small mb-2">Stylus Pen</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#productModal8">Details</button>
+                                    <form action="{% url 'cart_add' product_id=26 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- Accessory 9 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/MX2D3.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Apple Pencil">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <h6 class="fw-bold mb-1 text-dark">Apple Pencil</h6>
-                            <p class="text-muted small mb-2">Stylus Pen</p>
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$159.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/jbl_black.webp' %}" alt="JBL Charge 5">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold text-success mb-2">$99.00</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal8">View Details</button>
-                                <!-- Add to Cart Form -->
-                                <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                                </form>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">JBL Charge 5</h5>
+                                    <p class="card-text text-muted small mb-2">Immersive Sound</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#productModal9">Details</button>
+                                    <form action="{% url 'cart_add' product_id=15 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- Accessory 10 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/MX2D3.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Apple Pencil">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <h6 class="fw-bold mb-1 text-dark">Apple Pencil</h6>
-                            <p class="text-muted small mb-2">Stylus Pen</p>
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$459.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/watch.webp' %}" alt="Apple series 10">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold text-success mb-2">$99.00</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal8">View Details</button>
-                                <!-- Add to Cart Form -->
-                                <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                                </form>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">Apple series 10</h5>
+                                    <p class="card-text text-muted small mb-2">GPS + cellular</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#productModal10">Details</button>
+                                    <form action="{% url 'cart_add' product_id=17 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- Accessory 11 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/MX2D3.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Apple Pencil">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <h6 class="fw-bold mb-1 text-dark">Apple Pencil</h6>
-                            <p class="text-muted small mb-2">Stylus Pen</p>
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$249.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/magickeyf.png' %}" alt="Magic Keyboard Folio">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold text-success mb-2">$99.00</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal8">View Details</button>
-                                <!-- Add to Cart Form -->
-                                <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                                </form>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">Magic Keyboard Folio</h5>
+                                    <p class="card-text text-muted small mb-2">Detachable keyboard</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#productModal11">Details</button>
+                                    <form action="{% url 'cart_add' product_id=20 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- Accessory 12 -->
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="{% static 'images/MX2D3.jpeg' %}" class="card-img-top mx-auto" style="height: 160px; object-fit: contain;" alt="Apple Pencil">
-                    <div class="card-body d-flex flex-column justify-content-between p-2">
-                        <div>
-                            <h6 class="fw-bold mb-1 text-dark">Apple Pencil</h6>
-                            <p class="text-muted small mb-2">Stylus Pen</p>
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$349.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/magickeypro.png' %}" alt="Magic Keyboard 13">
+                            </div>
                         </div>
-                        <div>
-                            <p class="fw-bold text-success mb-2">$99.00</p>
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#productModal8">View Details</button>
-                                <!-- Add to Cart Form -->
-                                <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                                </form>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">Magic Keyboard 13"</h5>
+                                    <p class="card-text text-muted small mb-2">Amazing typing experience</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#productModal12">Details</button>
+                                    <form action="{% url 'cart_add' product_id=16 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
+
+    <!-- PRODUCT MODALS -->
 
     <!-- Modal 1: Ultra SmartWatch -->
     <div class="modal fade" id="productModal1" tabindex="-1" aria-labelledby="productModal1Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
                     <h5 class="modal-title fw-bold" id="productModal1Label">Ultra SmartWatch</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
                         <img src="{% static 'images/ultwatch.webp' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Ultra SmartWatch">
-                        <h4 class="text-success fw-bold">$599.99</h4>
+                        <h4 class="text-primary fw-bold">$599.99</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Design:</strong> Slimmer lightweight casing</li>
-                        <li class="list-group-item"><strong>Display:</strong> Larger, wider OLED display</li>
-                        <li class="list-group-item"><strong>Battery:</strong> Extended multi-day battery life</li>
-                        <li class="list-group-item"><strong>Tracking:</strong> Continuous heart-rate monitoring & GPS</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Design:</strong> Slimmer lightweight casing</li>
+                        <li class="list-group-item bg-transparent"><strong>Display:</strong> Larger, wider OLED display</li>
+                        <li class="list-group-item bg-transparent"><strong>Battery:</strong> Extended multi-day battery life</li>
+                        <li class="list-group-item bg-transparent"><strong>Tracking:</strong> Continuous heart-rate monitoring & GPS</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <!-- Add to Cart Form -->
-                    <form action="{% url 'cart_add' product_id=13 %}" method="POST" class="m-0 p-0">
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=24 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
-                    </form>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
                 </div>
             </div>
@@ -344,30 +576,29 @@
     <!-- Modal 2: Wireless Earbuds -->
     <div class="modal fade" id="productModal2" tabindex="-1" aria-labelledby="productModal2Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
                     <h5 class="modal-title fw-bold" id="productModal2Label">Wireless Earbuds</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
                         <img src="{% static 'images/airpodddd.webp' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Wireless Earbuds">
-                        <h4 class="text-success fw-bold">$129.00</h4>
+                        <h4 class="text-primary fw-bold">$129.00</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Chipset:</strong> Apple H2 Chip</li>
-                        <li class="list-group-item"><strong>Audio:</strong> Open-ear Active Noise Cancellation</li>
-                        <li class="list-group-item"><strong>Sound Quality:</strong> High-Fidelity Audio output</li>
-                        <li class="list-group-item"><strong>Battery:</strong> Long-lasting case + earbud playback</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Chipset:</strong> Apple H2 Chip</li>
+                        <li class="list-group-item bg-transparent"><strong>Audio:</strong> Open-ear Active Noise Cancellation</li>
+                        <li class="list-group-item bg-transparent"><strong>Sound Quality:</strong> High-Fidelity Audio output</li>
+                        <li class="list-group-item bg-transparent"><strong>Battery:</strong> Long-lasting case + earbud playback</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <!-- Add to Cart Form -->
-                    <form action="{% url 'cart_add' product_id=22 %}" method="POST" class="m-0 p-0">
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=1 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
                 </div>
             </div>
@@ -377,30 +608,29 @@
     <!-- Modal 3: JBL Clip 5 -->
     <div class="modal fade" id="productModal3" tabindex="-1" aria-labelledby="productModal3Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
                     <h5 class="modal-title fw-bold" id="productModal3Label">JBL Clip 5</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
                         <img src="{% static 'images/jbl_sd.webp' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="JBL Clip 5">
-                        <h4 class="text-success fw-bold">$59.00</h4>
+                        <h4 class="text-primary fw-bold">$59.00</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Durability:</strong> Waterproof & Dustproof rating</li>
-                        <li class="list-group-item"><strong>Connectivity:</strong> Ultra-portable Bluetooth</li>
-                        <li class="list-group-item"><strong>Feature:</strong> Integrated carabiner hook</li>
-                        <li class="list-group-item"><strong>Sound:</strong> Dynamic audio output</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Durability:</strong> Waterproof & Dustproof rating</li>
+                        <li class="list-group-item bg-transparent"><strong>Connectivity:</strong> Ultra-portable Bluetooth</li>
+                        <li class="list-group-item bg-transparent"><strong>Feature:</strong> Integrated carabiner hook</li>
+                        <li class="list-group-item bg-transparent"><strong>Sound:</strong> Dynamic audio output</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <!-- Add to Cart Form -->
-                    <form action="{% url 'cart_add' product_id=15 %}" method="POST" class="m-0 p-0">
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=19 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
                 </div>
             </div>
@@ -410,30 +640,29 @@
     <!-- Modal 4: HomePod -->
     <div class="modal fade" id="productModal4" tabindex="-1" aria-labelledby="productModal4Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
                     <h5 class="modal-title fw-bold" id="productModal4Label">HomePod</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
                         <img src="{% static 'images/homepod-210.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="HomePod">
-                        <h4 class="text-success fw-bold">$259.00</h4>
+                        <h4 class="text-primary fw-bold">$259.00</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Audio:</strong> Immersive room-filling acoustics</li>
-                        <li class="list-group-item"><strong>Integration:</strong> Intelligent Smart Home control</li>
-                        <li class="list-group-item"><strong>Assistant:</strong> Siri voice-activation built-in</li>
-                        <li class="list-group-item"><strong>Connectivity:</strong> Wi-Fi & AirPlay support</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Audio:</strong> Immersive room-filling acoustics</li>
+                        <li class="list-group-item bg-transparent"><strong>Integration:</strong> Intelligent Smart Home control</li>
+                        <li class="list-group-item bg-transparent"><strong>Assistant:</strong> Siri voice-activation built-in</li>
+                        <li class="list-group-item bg-transparent"><strong>Connectivity:</strong> Wi-Fi & AirPlay support</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <!-- Add to Cart Form -->
-                    <form action="{% url 'cart_add' product_id=3 %}" method="POST" class="m-0 p-0">
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=10 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
                 </div>
             </div>
@@ -443,30 +672,29 @@
     <!-- Modal 5: Folio Case -->
     <div class="modal fade" id="productModal5" tabindex="-1" aria-labelledby="productModal5Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
                     <h5 class="modal-title fw-bold" id="productModal5Label">Folio Case</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
                         <img src="{% static 'images/MDEQ4.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Folio Case">
-                        <h4 class="text-success fw-bold">$99.00</h4>
+                        <h4 class="text-primary fw-bold">$99.00</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Protection:</strong> Full front and back coverage</li>
-                        <li class="list-group-item"><strong>Material:</strong> Premium synthetic finish</li>
-                        <li class="list-group-item"><strong>Design:</strong> Sleek, slim, and lightweight</li>
-                        <li class="list-group-item"><strong>Features:</strong> Magnetic auto-wake/sleep cover</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Protection:</strong> Full front and back coverage</li>
+                        <li class="list-group-item bg-transparent"><strong>Material:</strong> Premium synthetic finish</li>
+                        <li class="list-group-item bg-transparent"><strong>Design:</strong> Sleek, slim, and lightweight</li>
+                        <li class="list-group-item bg-transparent"><strong>Features:</strong> Magnetic auto-wake/sleep cover</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <!-- Add to Cart Form -->
-                    <form action="{% url 'cart_add' product_id=12 %}" method="POST" class="m-0 p-0">
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=25 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
                 </div>
             </div>
@@ -476,30 +704,29 @@
     <!-- Modal 6: 40W Power Adapter -->
     <div class="modal fade" id="productModal6" tabindex="-1" aria-labelledby="productModal6Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
                     <h5 class="modal-title fw-bold" id="productModal6Label">40W Dynamic Power Adapter</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
                         <img src="{% static 'images/MGKN4.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Power Adapter">
-                        <h4 class="text-success fw-bold">$35.00</h4>
+                        <h4 class="text-primary fw-bold">$35.00</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Output:</strong> 40W High-Efficiency Power Delivery</li>
-                        <li class="list-group-item"><strong>Port:</strong> USB-C fast-charging compatibility</li>
-                        <li class="list-group-item"><strong>Safety:</strong> Built-in surge & overcharge protection</li>
-                        <li class="list-group-item"><strong>Design:</strong> Compact travel-friendly plug</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Output:</strong> 40W High-Efficiency Power Delivery</li>
+                        <li class="list-group-item bg-transparent"><strong>Port:</strong> USB-C fast-charging compatibility</li>
+                        <li class="list-group-item bg-transparent"><strong>Safety:</strong> Built-in surge & overcharge protection</li>
+                        <li class="list-group-item bg-transparent"><strong>Design:</strong> Compact travel-friendly plug</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <!-- Add to Cart Form -->
-                    <form action="{% url 'cart_add' product_id=11 %}" method="POST" class="m-0 p-0">
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=21 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
                 </div>
             </div>
@@ -509,30 +736,29 @@
     <!-- Modal 7: Beats Solo -->
     <div class="modal fade" id="productModal7" tabindex="-1" aria-labelledby="productModal7Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
                     <h5 class="modal-title fw-bold" id="productModal7Label">Beats Solo</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
                         <img src="{% static 'images/MUW33.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Beats Solo">
-                        <h4 class="text-success fw-bold">$150.00</h4>
+                        <h4 class="text-primary fw-bold">$150.00</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Type:</strong> On-Ear Wireless Headphones</li>
-                        <li class="list-group-item"><strong>Sound:</strong> Signature tuned audio profile</li>
-                        <li class="list-group-item"><strong>Comfort:</strong> Ergonomic cushioned earcups</li>
-                        <li class="list-group-item"><strong>Battery:</strong> All-day playback endurance</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Type:</strong> On-Ear Wireless Headphones</li>
+                        <li class="list-group-item bg-transparent"><strong>Sound:</strong> Signature tuned audio profile</li>
+                        <li class="list-group-item bg-transparent"><strong>Comfort:</strong> Ergonomic cushioned earcups</li>
+                        <li class="list-group-item bg-transparent"><strong>Battery:</strong> All-day playback endurance</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <!-- Add to Cart Form -->
-                    <form action="{% url 'cart_add' product_id=20 %}" method="POST" class="m-0 p-0">
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=23 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
                 </div>
             </div>
@@ -542,172 +768,175 @@
     <!-- Modal 8: Apple Pencil -->
     <div class="modal fade" id="productModal8" tabindex="-1" aria-labelledby="productModal8Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
                     <h5 class="modal-title fw-bold" id="productModal8Label">Apple Pencil</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
                         <img src="{% static 'images/MX2D3.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Apple Pencil">
-                        <h4 class="text-success fw-bold">$99.00</h4>
+                        <h4 class="text-primary fw-bold">$99.00</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Precision:</strong> Pixel-perfect accuracy</li>
-                        <li class="list-group-item"><strong>Sensitivity:</strong> Advanced tilt & pressure control</li>
-                        <li class="list-group-item"><strong>Latency:</strong> Ultra-low latency response</li>
-                        <li class="list-group-item"><strong>Usage:</strong> Ideal for digital art and note-taking</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Precision:</strong> Pixel-perfect accuracy</li>
+                        <li class="list-group-item bg-transparent"><strong>Sensitivity:</strong> Advanced tilt & pressure control</li>
+                        <li class="list-group-item bg-transparent"><strong>Latency:</strong> Ultra-low latency response</li>
+                        <li class="list-group-item bg-transparent"><strong>Usage:</strong> Ideal for digital art and note-taking</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <!-- Add to Cart Form -->
-                    <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=26 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- modal 9 -->
+    <!-- Modal 9: JBL Charge 5 -->
     <div class="modal fade" id="productModal9" tabindex="-1" aria-labelledby="productModal9Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold" id="productModal9Label">Apple Pencil</h5>
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="productModal9Label">JBL Charge 5</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
-                        <img src="{% static 'images/MX2D3.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Apple Pencil">
-                        <h4 class="text-success fw-bold">$99.00</h4>
+                        <img src="{% static 'images/jbl_black.webp' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="JBL Charge 5">
+                        <h4 class="text-primary fw-bold">$159.00</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Precision:</strong> Pixel-perfect accuracy</li>
-                        <li class="list-group-item"><strong>Sensitivity:</strong> Advanced tilt & pressure control</li>
-                        <li class="list-group-item"><strong>Latency:</strong> Ultra-low latency response</li>
-                        <li class="list-group-item"><strong>Usage:</strong> Ideal for digital art and note-taking</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Sound:</strong> Dynamic long-excursion driver & dual radiators</li>
+                        <li class="list-group-item bg-transparent"><strong>Playtime:</strong> Up to 20 hours of battery life</li>
+                        <li class="list-group-item bg-transparent"><strong>Protection:</strong> IP67 waterproof and dustproof</li>
+                        <li class="list-group-item bg-transparent"><strong>PowerBank:</strong> Built-in powerbank to charge mobile devices</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <!-- Add to Cart Form -->
-                    <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=15 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- moadal 10 -->
+
+    <!-- Modal 10: Apple series 10 -->
     <div class="modal fade" id="productModal10" tabindex="-1" aria-labelledby="productModal10Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold" id="productModal10Label">Apple Pencil</h5>
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="productModal10Label">Apple series 10</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
-                        <img src="{% static 'images/MX2D3.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Apple Pencil">
-                        <h4 class="text-success fw-bold">$99.00</h4>
+                        <img src="{% static 'images/watch.webp' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Apple series 10">
+                        <h4 class="text-primary fw-bold">$459.00</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Precision:</strong> Pixel-perfect accuracy</li>
-                        <li class="list-group-item"><strong>Sensitivity:</strong> Advanced tilt & pressure control</li>
-                        <li class="list-group-item"><strong>Latency:</strong> Ultra-low latency response</li>
-                        <li class="list-group-item"><strong>Usage:</strong> Ideal for digital art and note-taking</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Display:</strong> Always-On Retina OLED display</li>
+                        <li class="list-group-item bg-transparent"><strong>Cellular:</strong> Independent GPS + cellular connectivity</li>
+                        <li class="list-group-item bg-transparent"><strong>Health:</strong> ECG, sleep apnea notifications & SPO2</li>
+                        <li class="list-group-item bg-transparent"><strong>Charging:</strong> Faster charging up to 80% in 30 mins</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <!-- Add to Cart Form -->
-                    <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=17 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- modal 11 -->
+
+    <!-- Modal 11: Magic Keyboard Folio -->
     <div class="modal fade" id="productModal11" tabindex="-1" aria-labelledby="productModal11Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold" id="productModal8Label">Apple Pencil</h5>
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="productModal11Label">Magic Keyboard Folio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
-                        <img src="{% static 'images/MX2D3.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Apple Pencil">
-                        <h4 class="text-success fw-bold">$99.00</h4>
+                        <img src="{% static 'images/magickeyf.png' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Magic Keyboard Folio">
+                        <h4 class="text-primary fw-bold">$249.00</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Precision:</strong> Pixel-perfect accuracy</li>
-                        <li class="list-group-item"><strong>Sensitivity:</strong> Advanced tilt & pressure control</li>
-                        <li class="list-group-item"><strong>Latency:</strong> Ultra-low latency response</li>
-                        <li class="list-group-item"><strong>Usage:</strong> Ideal for digital art and note-taking</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Keyboard:</strong> Comfortable typing experience with scissor mechanism</li>
+                        <li class="list-group-item bg-transparent"><strong>Trackpad:</strong> Integrated click-anywhere trackpad</li>
+                        <li class="list-group-item bg-transparent"><strong>Design:</strong> 2-piece design with detachable keyboard</li>
+                        <li class="list-group-item bg-transparent"><strong>Protection:</strong> Front and back protective cover</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <!-- Add to Cart Form -->
-                    <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=20 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- modal 12 -->>
+
+    <!-- Modal 12: Magic Keyboard 13" -->
     <div class="modal fade" id="productModal12" tabindex="-1" aria-labelledby="productModal12Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold" id="productModal8Label">Apple Pencil</h5>
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="productModal12Label">Magic Keyboard 13"</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
                     <div class="text-center mb-3">
-                        <img src="{% static 'images/MX2D3.jpeg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Apple Pencil">
-                        <h4 class="text-success fw-bold">$99.00</h4>
+                        <img src="{% static 'images/magickeypro.png' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="Magic Keyboard 13">
+                        <h4 class="text-primary fw-bold">$349.00</h4>
                     </div>
-                    <h6 class="fw-bold px-3 mb-2">Specifications:</h6>
-                    <ul class="list-group list-group-flush mb-2">
-                        <li class="list-group-item"><strong>Precision:</strong> Pixel-perfect accuracy</li>
-                        <li class="list-group-item"><strong>Sensitivity:</strong> Advanced tilt & pressure control</li>
-                        <li class="list-group-item"><strong>Latency:</strong> Ultra-low latency response</li>
-                        <li class="list-group-item"><strong>Usage:</strong> Ideal for digital art and note-taking</li>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Design:</strong> Floating cantilever design with magnetic attachment</li>
+                        <li class="list-group-item bg-transparent"><strong>Backlight:</strong> Backlit keys with 1mm travel scissor mechanism</li>
+                        <li class="list-group-item bg-transparent"><strong>Trackpad:</strong> Glass trackpad with haptic feedback</li>
+                        <li class="list-group-item bg-transparent"><strong>Charging:</strong> USB-C port for pass-through charging</li>
                     </ul>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <!-- Add to Cart Form -->
-                    <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=16 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark btn-sm w-100">Buy Now</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    
-    
-    
 
-    
-    
+    <!-- FOOTER SECTION -->
+    <footer class="app-footer pt-5 pb-4 mt-auto">
+        <div class="container">
+            <div class="pt-2 text-center text-md-start">
+                <p class="text-muted small mb-0 opacity-75">
+                  &copy; 2026 MY STORE Inc. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
 
-
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

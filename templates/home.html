@@ -1,221 +1,450 @@
-{{% load static %}
+{% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MY STORE</title> 
+    <title>MY STORE | Premium Electronics & Tech</title> 
     
-    <!-- Bootstrap CSS -->
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <style>
-      /* Embedded CSS overrides for hero carousel sizing */
-      .hero-banner-container {
-        background-color: #000;
-      }
-      .hero-img {
-        max-height: 400px; /* Shrinks images so full picture fits */
-        object-fit: contain; /* Prevents stretching/cropping */
-        margin: 0 auto;
-        padding-bottom: 110px; /* Space reserved for bottom caption */
-      }
-      .carousel-caption {
-        background: rgba(0, 0, 0, 0.75); /* Dark pill backdrop for readability */
-        border-radius: 12px;
-        padding: 10px 20px;
-        bottom: 15px; /* Fixed to bottom of carousel */
-        max-width: 480px;
-        left: 50%;
-        transform: translateX(-50%);
+      :root {
+        --brand-primary: #0f172a;
+        --brand-accent: #2563eb;
+        --brand-accent-hover: #1d4ed8;
+        --brand-danger: #ef4444;
+        --bg-main: #f8fafc;
+        --surface-card: #ffffff;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border-color: rgba(226, 232, 240, 0.8);
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.06);
+        --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+        --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.02);
+        --shadow-glow: 0 12px 30px -10px rgba(37, 99, 235, 0.3);
+        --radius-lg: 20px;
+        --radius-md: 12px;
+        --radius-sm: 8px;
+        --transition-base: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      /* Top-right round jagged/zigzag price tag */
-      .price-tag-zigzag {
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        letter-spacing: -0.011em;
+        overflow-x: hidden;
+      }
+
+      /* TOP TICKER BAR */
+      .top-ticker {
+        background: var(--brand-primary);
+        color: #f8fafc;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+      }
+
+      /* HERO SECTION */
+      .hero-section {
+        background: radial-gradient(circle at top right, #1e293b, #0f172a);
+        border-radius: 0 0 32px 32px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-section::before {
+        content: '';
         position: absolute;
-        top: -8px;
-        right: -8px;
-        background-color: #dc3545; /* Red accent */
-        color: #ffffff;
-        font-weight: 800;
-        font-size: 0.85rem;
-        padding: 14px 10px;
+        width: 300px;
+        height: 300px;
+        background: rgba(37, 99, 235, 0.15);
+        filter: blur(100px);
+        border-radius: 50%;
+        top: -50px;
+        right: -50px;
+      }
+      .hero-img-wrapper {
+        position: relative;
+        padding: 20px 0 100px;
+      }
+      .hero-img {
+        max-height: 400px;
+        object-fit: contain;
+        filter: drop-shadow(0 20px 30px rgba(0,0,0,0.4));
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .carousel-item:hover .hero-img {
+        transform: scale(1.03) translateY(-4px);
+      }
+      .hero-glass-card {
+        background: rgba(15, 23, 42, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-lg);
+        padding: 24px 32px;
+        max-width: 560px;
+        margin: 0 auto;
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        z-index: 10;
+      }
+
+      /* VALUE PROPOSITION CARDS */
+      .value-pill-card {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 20px 16px;
+        transition: var(--transition-base);
+        box-shadow: var(--shadow-sm);
+      }
+      .value-pill-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+        border-color: rgba(37, 99, 235, 0.2);
+      }
+      .value-icon-box {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: #eff6ff;
+        color: var(--brand-accent);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        margin-bottom: 12px;
+      }
+
+      /* TRACKING CONTAINER */
+      .tracking-card {
+        background: var(--surface-card);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-lg);
+      }
+      .pulse-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .pulse-dot {
+        width: 8px;
+        height: 8px;
+        background-color: var(--brand-danger);
+        border-radius: 50%;
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+        animation: pulse 1.6s infinite;
+      }
+      @keyframes pulse {
+        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+        70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+      }
+
+      /* PRODUCT & CATEGORY CARDS */
+      .modern-card {
+        background: var(--surface-card);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-color);
+        transition: var(--transition-base);
+        position: relative;
+        overflow: hidden;
+      }
+      .modern-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(37, 99, 235, 0.15);
+      }
+
+      .card-media-wrapper {
+        background: #f1f5f9;
+        height: 190px;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        z-index: 10;
-        pointer-events: none; /* Keeps it completely non-clickable */
-        
-        /* 12-point jagged starburst badge clip-path */
-        clip-path: polygon(
-            50% 0%, 61% 11%, 75% 4%, 81% 18%, 96% 18%, 95% 33%, 
-            100% 46%, 93% 59%, 98% 72%, 87% 81%, 87% 96%, 72% 95%, 
-            60% 100%, 47% 93%, 34% 98%, 25% 86%, 10% 88%, 11% 73%, 
-            0% 62%, 8% 49%, 2% 35%, 15% 27%, 13% 12%, 28% 12%
-        );
+        position: relative;
+        overflow: hidden;
+      }
+      .card-media-wrapper img {
+        max-height: 80%;
+        max-width: 80%;
+        object-fit: contain;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .modern-card:hover .card-media-wrapper img {
+        transform: scale(1.1);
       }
 
-      /* Footer Styling */
-      .site-footer {
-        background-color: #f8f9fa;
-        color: #333333;
+      /* Quick Action Overlay on Cards */
+      .quick-actions {
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        transition: var(--transition-base);
+      }
+      .modern-card:hover .quick-actions {
+        bottom: 0;
+      }
+
+      .price-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: var(--brand-primary);
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.8125rem;
+        padding: 4px 12px;
+        border-radius: 50px;
+        box-shadow: var(--shadow-sm);
+        z-index: 5;
+      }
+
+      .wishlist-btn {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        transition: var(--transition-base);
+        z-index: 5;
+      }
+      .wishlist-btn:hover {
+        color: var(--brand-danger);
+        transform: scale(1.1);
+      }
+
+      /* SECTION HEADERS */
+      .section-title {
+        font-weight: 800;
+        font-size: 1.75rem;
+        letter-spacing: -0.025em;
+      }
+
+      /* FOOTER */
+      .app-footer {
+        background-color: var(--brand-primary);
+        color: #94a3b8;
         font-size: 0.875rem;
       }
-      .site-footer a {
-        color: #495057;
+      .app-footer h6 {
+        color: #ffffff;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+      .app-footer a {
+        color: #94a3b8;
         text-decoration: none;
+        transition: color 0.2s ease;
       }
-      .site-footer a:hover {
-        color: #dc3545;
-        text-decoration: underline;
+      .app-footer a:hover {
+        color: #ffffff;
       }
-      .footer-sub-links a {
-        font-size: 0.78rem;
-        color: #6c757d;
+      .footer-input {
+        background: #1e293b;
+        border: 1px solid #334155;
+        color: #fff;
+        border-radius: var(--radius-md);
+      }
+      .footer-input:focus {
+        background: #1e293b;
+        border-color: var(--brand-accent);
+        color: #fff;
+        box-shadow: none;
       }
     </style>
   </head>
   <body>
+    
+    <!-- TOP ANNOUNCEMENT TICKER -->
+    <div class="top-ticker py-2 text-center">
+      <div class="container">
+        <span>⚡ <strong>Spring Sale is Live:</strong> Save up to 40% on select Apple & Logitech gear. <a href="{% url 'shop' %}" class="text-white text-decoration-underline ms-1">Shop Now</a></span>
+      </div>
+    </div>
+
     {% include 'navbar.html' %} 
 
     <!-- HERO BANNER -->
-    <section class="hero-banner-container">
-        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            
-            <div class="carousel-inner">
+    <section class="hero-section mb-5">
+      <div class="container px-0">
+          <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="6000">
+              <div class="carousel-indicators mb-2">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
               
-              <!-- Slide 1 -->
-              <div class="carousel-item active text-center">
-                <img src="{% static 'images/output-onlinepngtools.png' %}" class="d-block hero-img img-fluid" alt="Hero 1">
-                <div class="carousel-caption">
-                  <h3 class="fw-bold text-white fs-5 mb-1">Next-Gen Tech is Here</h3>
-                  <p class="small text-light mb-2">Discover smartphones and smart gadgets.</p>
-                  <a href="{% url 'shop' %}" class="btn btn-danger btn-sm rounded-pill px-4 fw-semibold shadow">
-                    Shop Now <i class="bi bi-arrow-right ms-1"></i>
-                  </a>
+              <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active text-center">
+                  <div class="hero-img-wrapper">
+                    <img src="{% static 'images/output-onlinepngtools.png' %}" class="d-block hero-img img-fluid mx-auto" alt="Next-Gen Tech">
+                  </div>
+                  <div class="hero-glass-card">
+                    <span class="badge bg-danger mb-2 px-3 py-1 rounded-pill fw-bold">FEATURED RELEASE</span>
+                    <h2 class="fw-extrabold text-white fs-4 mb-1">Next-Gen Workstation Gear</h2>
+                    <p class="small text-light text-opacity-75 mb-3">Designed to maximize speed, ergonomics, and daily productivity.</p>
+                    <a href="{% url 'shop' %}" class="btn btn-primary btn-sm rounded-pill px-4 py-2 fw-bold shadow-sm">
+                      Explore Deals <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item text-center">
+                  <div class="hero-img-wrapper">
+                    <img src="{% static 'images/output-onlinepngtools (1).png' %}" class="d-block hero-img img-fluid mx-auto" alt="Accessories">
+                  </div>
+                  <div class="hero-glass-card">
+                    <span class="badge bg-primary mb-2 px-3 py-1 rounded-pill fw-bold">PREMIUM ACCESSORIES</span>
+                    <h2 class="fw-extrabold text-white fs-4 mb-1">Elevate Everyday Life</h2>
+                    <p class="small text-light text-opacity-75 mb-3">Ultra-durable materials paired with sleek minimalist aesthetics.</p>
+                    <a href="{% url 'shop' %}" class="btn btn-primary btn-sm rounded-pill px-4 py-2 fw-bold shadow-sm">
+                      Shop Accessories <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item text-center">
+                  <div class="hero-img-wrapper">
+                    <img src="{% static 'images/store-card-13-homepod-nav-202301.png' %}" class="d-block hero-img img-fluid mx-auto" alt="Home Audio">
+                  </div>
+                  <div class="hero-glass-card">
+                    <span class="badge bg-warning text-dark mb-2 px-3 py-1 rounded-pill fw-bold">ACOUSTIC AUDIO</span>
+                    <h2 class="fw-extrabold text-white fs-4 mb-1">Room-Filling Studio Sound</h2>
+                    <p class="small text-light text-opacity-75 mb-3">Crystal clear highs and deep bass tailored for your smart space.</p>
+                    <a href="{% url 'shop' %}" class="btn btn-warning text-dark btn-sm rounded-pill px-4 py-2 fw-bold shadow-sm">
+                      Listen Now <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              <!-- Slide 2 -->
-              <div class="carousel-item text-center">
-                <img src="{% static 'images/output-onlinepngtools (1).png' %}" class="d-block hero-img img-fluid" alt="Hero 2">
-                <div class="carousel-caption">
-                  <h3 class="fw-bold text-white fs-5 mb-1">Premium Accessories</h3>
-                  <p class="small text-light mb-2">Upgrade your daily setup with modern gear.</p>
-                  <a href="{% url 'shop' %}" class="btn btn-danger btn-sm rounded-pill px-4 fw-semibold shadow">
-                    Shop Now <i class="bi bi-arrow-right ms-1"></i>
-                  </a>
-                </div>
-              </div>
-
-              <!-- Slide 3 -->
-              <div class="carousel-item text-center">
-                <img src="{% static 'images/store-card-13-homepod-nav-202301.png' %}" class="d-block hero-img img-fluid" alt="Hero 3">
-                <div class="carousel-caption">
-                  <h3 class="fw-bold text-white fs-5 mb-1">Immersive Sound</h3>
-                  <p class="small text-light mb-2">Experience high-definition home audio.</p>
-                  <a href="{% url 'shop' %}" class="btn btn-danger btn-sm rounded-pill px-4 fw-semibold shadow">
-                    Shop Now <i class="bi bi-arrow-right ms-1"></i>
-                  </a>
-                </div>
-              </div>
-
-            </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-        </div>   
+              <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              </button>
+          </div>   
+      </div>
     </section>
 
-    <!-- VALUE PROPOSITION BAR -->
-    <section class="bg-white py-4 border-bottom shadow-sm">
+    <!-- VALUE PROPOSITIONS -->
+    <section class="py-2 mb-5">
         <div class="container">
-            <div class="row text-center gy-3">
-                <div class="col-md-3 col-6">
-                    <i class="bi bi-truck fs-2 text-danger"></i>
-                    <h6 class="fw-bold mt-2 mb-1">Free Delivery</h6>
-                    <p class="text-muted small mb-0">On orders over $300</p>
+            <div class="row g-3 text-center">
+                <div class="col-6 col-md-3">
+                    <div class="value-pill-card h-100">
+                      <div class="value-icon-box"><i class="bi bi-truck"></i></div>
+                      <h6 class="fw-bold mb-1">Express Delivery</h6>
+                      <p class="text-muted small mb-0">Free shipping on orders over $200</p>
+                    </div>
                 </div>
-                <div class="col-md-3 col-6">
-                    <i class="bi bi-shield-check fs-2 text-danger"></i>
-                    <h6 class="fw-bold mt-2 mb-1">1 Year Warranty</h6>
-                    <p class="text-muted small mb-0">Guaranteed quality</p>
+                <div class="col-6 col-md-3">
+                    <div class="value-pill-card h-100">
+                      <div class="value-icon-box"><i class="bi bi-shield-check"></i></div>
+                      <h6 class="fw-bold mb-1">2-Year Warranty</h6>
+                      <p class="text-muted small mb-0">Full coverage on all items</p>
+                    </div>
                 </div>
-                <div class="col-md-3 col-6">
-                    <i class="bi bi-arrow-counterclockwise fs-2 text-danger"></i>
-                    <h6 class="fw-bold mt-2 mb-1">30 Days Return</h6>
-                    <p class="text-muted small mb-0">Hassle-free refunds</p>
+                <div class="col-6 col-md-3">
+                    <div class="value-pill-card h-100">
+                      <div class="value-icon-box"><i class="bi bi-arrow-counterclockwise"></i></div>
+                      <h6 class="fw-bold mb-1">30-Day Money Back</h6>
+                      <p class="text-muted small mb-0">Hassle-free dynamic returns</p>
+                    </div>
                 </div>
-                <div class="col-md-3 col-6">
-                    <i class="bi bi-headset fs-2 text-danger"></i>
-                    <h6 class="fw-bold mt-2 mb-1">24/7 Support</h6>
-                    <p class="text-muted small mb-0">Dedicated assistance</p>
+                <div class="col-6 col-md-3">
+                    <div class="value-pill-card h-100">
+                      <div class="value-icon-box"><i class="bi bi-headset"></i></div>
+                      <h6 class="fw-bold mb-1">24/7 Expert Care</h6>
+                      <p class="text-muted small mb-0">Direct human tech support</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="container-fluid px-3 px-lg-5 my-5">
+    <!-- MAIN BODY -->
+    <main class="container px-3 px-lg-4 mb-5">
 
         <!-- ORDER TRACKING SECTION -->
-        <section class="container my-5">
+        <section class="mb-5">
             <div class="row justify-content-center">
-                <div class="col-md-9 col-lg-8">
-                    <div class="card shadow-sm border-0 bg-light p-4 rounded-3">
-
-                        <div class="text-center mb-3">
-                            <h3 class="fw-bold m-0"><i class="bi bi-truck me-2 text-danger"></i>Track Your Order</h3>
-                            <p class="text-muted small">Enter your Order ID to check your current delivery status</p>   
+                <div class="col-lg-8">
+                    <div class="tracking-card p-4 p-md-5">
+                        <div class="text-center mb-4">
+                            <span class="pulse-badge text-danger bg-danger bg-opacity-10 px-3 py-1 rounded-pill fw-bold small mb-2">
+                              <span class="pulse-dot"></span> Live Order Lookup
+                            </span>
+                            <h3 class="fw-extrabold m-0">Track Your Package</h3>
+                            <p class="text-muted small mt-1">Enter your order ID to see real-time fulfillment progress</p>   
                         </div> 
                         
-                        <form action="" method="get" class="d-flex gap-2">
+                        <form action="" method="get" class="row g-2 justify-content-center">
+                          <div class="col-sm-8">
                             <input 
                                 type="text" 
                                 name="order_id" 
                                 value="{{ order_id }}" 
-                                class="form-control form-control-lg" 
-                                placeholder="Enter Order ID (e.g. 101)" 
+                                class="form-control form-control-lg border-2" 
+                                placeholder="e.g. 101" 
+                                style="border-radius: var(--radius-md); font-size: 0.95rem;"
                                 required
                             >
-                            <button type="submit" class="btn btn-danger btn-lg px-4 fw-semibold">
-                                Track
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold" style="border-radius: var(--radius-md); font-size: 0.95rem;">
+                              <i class="bi bi-search me-1"></i> Track Order
                             </button>
+                          </div>
                         </form>
         
-                        <!-- ERROR MESSAGE -->
+                        <!-- ERROR ALERT -->
                         {% if order_error %}
-                            <div class="alert alert-warning alert-dismissible fade show mt-3 mb-0 text-center" role="alert">
-                                <i class="bi bi-exclamation-triangle-fill me-1"></i> {{ order_error }}
+                            <div class="alert alert-danger alert-dismissible fade show mt-4 mb-0 text-center border-0 shadow-sm rounded-3" role="alert">
+                                <i class="bi bi-exclamation-circle-fill me-2"></i> {{ order_error }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         {% endif %}
 
-                        <!-- ORDER DETAILS RESULT CARD -->
+                        <!-- ORDER DISPLAY CARD -->
                         {% if order %}
-                            <div id="trackingCard" class="card mt-4 border-0 shadow-sm overflow-hidden position-relative">
-                        
-                                <!-- CARD HEADER WITH STATUS BADGE & CLOSE BUTTON -->
+                            <div id="trackingCard" class="card mt-4 border-0 shadow-sm overflow-hidden rounded-4 position-relative">
                                 <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3 pe-5">
-                                    <h5 class="m-0 fw-bold">Order #{{ order.id }}</h5>
-                            
-                                    <div class="d-flex align-items-center gap-2">
-                                        <!-- Dynamic Status Badges -->
+                                    <h6 class="m-0 fw-bold">Order #{{ order.id }}</h6>
+                                    <div>
                                         {% if order.status == 'Delivered' %}
                                             <span class="badge bg-success fs-6 px-3"><i class="bi bi-check-circle-fill me-1"></i> Delivered</span>
                                         {% elif order.status == 'Out for Delivery' %}
@@ -228,8 +457,6 @@
                                             <span class="badge bg-warning text-dark fs-6 px-3"><i class="bi bi-hourglass-split me-1"></i> {{ order.status|default:"Processing" }}</span>
                                         {% endif %}
                                     </div>
-
-                                    <!-- Inline Dismiss / Close Button -->
                                     <button type="button" 
                                             class="btn-close btn-close-white position-absolute top-0 end-0 m-3" 
                                             aria-label="Close"
@@ -237,93 +464,69 @@
                                     </button>
                                 </div>
 
-                                <!-- CARD BODY WITH ORDER DETAILS & ITEMS -->
                                 <div class="card-body p-4">
                                     <div class="row mb-3">
                                         <div class="col-6">
-                                            <p class="text-muted small mb-1">Placed On</p>
+                                            <p class="text-muted small mb-0">Date Placed</p>
                                             <h6 class="fw-bold">{{ order.created_at|date:"F j, Y" }}</h6>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-muted small mb-1">Total Amount</p>
-                                            <h6 class="fw-bold text-danger">${{ order.total_price }}</h6>
+                                            <p class="text-muted small mb-0">Total Amount</p>
+                                            <h6 class="fw-bold text-primary">${{ order.total_price }}</h6>
                                         </div>
                                     </div>
 
-                                    <!-- DYNAMIC 4-STAGE STEP-BY-STEP PROGRESS BAR -->
+                                    <!-- VISUAL TIMELINE -->
                                     <div class="my-4 px-2">
                                         <div class="position-relative my-4 mx-3">
-                                            <!-- Background Fill Line -->
                                             <div class="progress bg-secondary bg-opacity-25" style="height: 4px;">
-                                                <div class="progress-bar bg-danger" role="progressbar" 
+                                                <div class="progress-bar bg-primary" role="progressbar" 
                                                     style="width: {% if order.status == 'Delivered' %}100%{% elif order.status == 'Out for Delivery' %}66%{% elif order.status == 'Approved' %}33%{% else %}0%{% endif %}; transition: width 0.4s ease;" 
                                                     aria-valuemin="0" aria-valuemax="100">
                                                 </div>
                                             </div>
 
-                                            <!-- Stage 1: Processing -->
-                                            <button type="button" 
-                                                class="position-absolute top-0 start-0 translate-middle btn btn-sm {% if order.status == 'Processing' or order.status == 'Approved' or order.status == 'Out for Delivery' or order.status == 'Delivered' %}btn-danger{% else %}btn-secondary{% endif %} rounded-circle d-flex align-items-center justify-content-center" 
-                                                style="width: 2.3rem; height: 2.3rem; pointer-events: none;">
+                                            <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm {% if order.status == 'Processing' or order.status == 'Approved' or order.status == 'Out for Delivery' or order.status == 'Delivered' %}btn-primary{% else %}btn-secondary{% endif %} rounded-circle d-flex align-items-center justify-content-center" style="width: 2.2rem; height: 2.2rem; pointer-events: none;">
                                                 <i class="bi bi-clock-history"></i>
                                             </button>
                                             
-                                            <!-- Stage 2: Approved -->
-                                            <button type="button" 
-                                                class="position-absolute top-0 translate-middle btn btn-sm {% if order.status == 'Approved' or order.status == 'Out for Delivery' or order.status == 'Delivered' %}btn-danger{% else %}btn-secondary{% endif %} rounded-circle d-flex align-items-center justify-content-center" 
-                                                style="width: 2.3rem; height: 2.3rem; left: 33.33%; pointer-events: none;">
+                                            <button type="button" class="position-absolute top-0 translate-middle btn btn-sm {% if order.status == 'Approved' or order.status == 'Out for Delivery' or order.status == 'Delivered' %}btn-primary{% else %}btn-secondary{% endif %} rounded-circle d-flex align-items-center justify-content-center" style="width: 2.2rem; height: 2.2rem; left: 33.33%; pointer-events: none;">
                                                 <i class="bi bi-shield-check"></i>
                                             </button>
 
-                                            <!-- Stage 3: Out for Delivery -->
-                                            <button type="button" 
-                                                class="position-absolute top-0 translate-middle btn btn-sm {% if order.status == 'Out for Delivery' or order.status == 'Delivered' %}btn-danger{% else %}btn-secondary{% endif %} rounded-circle d-flex align-items-center justify-content-center" 
-                                                style="width: 2.3rem; height: 2.3rem; left: 66.66%; pointer-events: none;">
+                                            <button type="button" class="position-absolute top-0 translate-middle btn btn-sm {% if order.status == 'Out for Delivery' or order.status == 'Delivered' %}btn-primary{% else %}btn-secondary{% endif %} rounded-circle d-flex align-items-center justify-content-center" style="width: 2.2rem; height: 2.2rem; left: 66.66%; pointer-events: none;">
                                                 <i class="bi bi-truck"></i>
                                             </button>
 
-                                            <!-- Stage 4: Delivered -->
-                                            <button type="button" 
-                                                class="position-absolute top-0 start-100 translate-middle btn btn-sm {% if order.status == 'Delivered' %}btn-success{% else %}btn-secondary{% endif %} rounded-circle d-flex align-items-center justify-content-center" 
-                                                style="width: 2.3rem; height: 2.3rem; pointer-events: none;">
+                                            <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm {% if order.status == 'Delivered' %}btn-success{% else %}btn-secondary{% endif %} rounded-circle d-flex align-items-center justify-content-center" style="width: 2.2rem; height: 2.2rem; pointer-events: none;">
                                                 <i class="bi bi-check-lg"></i>
                                             </button>
                                         </div>
 
-                                        <!-- Stage Labels -->
                                         <div class="d-flex justify-content-between text-center small mt-3 fw-semibold">
-                                            <div style="width: 25%;" class="{% if order.status == 'Processing' %}text-danger fw-bold{% else %}text-muted{% endif %}">
-                                                Processing
-                                            </div>
-                                            <div style="width: 25%;" class="{% if order.status == 'Approved' %}text-danger fw-bold{% else %}text-muted{% endif %}">
-                                                Approved
-                                            </div>
-                                            <div style="width: 25%;" class="{% if order.status == 'Out for Delivery' %}text-danger fw-bold{% else %}text-muted{% endif %}">
-                                                Out for Delivery
-                                            </div>
-                                            <div style="width: 25%;" class="{% if order.status == 'Delivered' %}text-success fw-bold{% else %}text-muted{% endif %}">
-                                                Delivered
-                                            </div>
+                                            <div style="width: 25%;" class="{% if order.status == 'Processing' %}text-primary fw-bold{% else %}text-muted{% endif %}">Processing</div>
+                                            <div style="width: 25%;" class="{% if order.status == 'Approved' %}text-primary fw-bold{% else %}text-muted{% endif %}">Approved</div>
+                                            <div style="width: 25%;" class="{% if order.status == 'Out for Delivery' %}text-primary fw-bold{% else %}text-muted{% endif %}">On the Way</div>
+                                            <div style="width: 25%;" class="{% if order.status == 'Delivered' %}text-success fw-bold{% else %}text-muted{% endif %}">Delivered</div>
                                         </div>
                                     </div>
 
-                                    <hr>
+                                    <hr class="my-4 opacity-10">
 
-                                    <!-- ORDERED ITEMS LIST -->
-                                    <h6 class="fw-bold mb-3">Items in this order:</h6>
+                                    <h6 class="fw-bold mb-3">Purchased Items</h6>
                                     <div class="list-group list-group-flush mb-2">
                                         {% for item in order.items.all %}
-                                            <div class="list-group-item d-flex justify-content-between align-items-center px-0 bg-transparent border-bottom">
+                                            <div class="list-group-item d-flex justify-content-between align-items-center px-0 bg-transparent">
                                                 <div class="d-flex align-items-center gap-3">
                                                     {% if item.product.image %}
-                                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+                                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="rounded-3" style="width: 48px; height: 48px; object-fit: cover;">
                                                     {% else %}
-                                                        <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                                                            <i class="bi bi-box-seam fs-4"></i>
+                                                        <div class="bg-light text-secondary rounded-3 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                                            <i class="bi bi-box-seam fs-5"></i>
                                                         </div>
                                                     {% endif %}
                                                     <div>
-                                                        <h6 class="mb-0 fw-semibold">{{ item.product.name }}</h6>
+                                                        <h6 class="mb-0 fw-semibold fs-6">{{ item.product.name }}</h6>
                                                         <small class="text-muted">Qty: {{ item.quantity }} × ${{ item.price }}</small>
                                                     </div>
                                                 </div>
@@ -333,36 +536,42 @@
                                             <p class="text-muted small mb-0">No item details recorded for this order.</p>
                                         {% endfor %}
                                     </div>
-
                                 </div>
-
                             </div>
                         {% endif %}
-
                     </div>
                 </div>
             </div>
         </section>
         
         <!-- FEATURED CATEGORIES -->
-        <h2 class="mb-4 text-center text-capitalize fw-bold">Featured Categories</h2> 
-        <div class="row mb-5">
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+              <h2 class="section-title m-0">Shop by Category</h2>
+              <p class="text-muted small m-0">Browse gear tailored for your specific workflow</p>
+            </div>
+            <a href="{% url 'shop' %}" class="btn btn-link text-primary fw-bold text-decoration-none p-0">View All Categories <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
+        
+        <div class="row g-4 mb-5">
             <!-- Category 1 -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100 shadow-sm border-0 overflow-hidden">
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
                     <div class="row g-0 align-items-center h-100">
                         <div class="col-5">
-                            <div class="card-img-wrapper">
-                                <img src="{% static 'images/phones.png' %}" class="product-img" alt="Phones">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/phones.png' %}" alt="Smartphones">
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="card-body d-flex flex-column justify-content-between h-100 p-3">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
                                 <div>
-                                    <h5 class="card-title text-capitalize fw-bold mb-1 fs-6">Phones</h5>
-                                    <p class="card-text text-muted small mb-0">Smart phones for modern life</p>
+                                    <h5 class="card-title fw-bold mb-1 fs-6">Smartphones</h5>
+                                    <p class="card-text text-muted small mb-0">Flagship mobile devices</p>
                                 </div>
-                                <a href="{% url 'category_phones' %}" class="btn btn-primary btn-sm mt-2 w-100">Shop Phones</a>
+                                <a href="{% url 'category_phones' %}" class="btn btn-outline-dark btn-sm rounded-pill mt-3 w-100 fw-semibold">
+                                  Explore Models
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -370,21 +579,23 @@
             </div>
 
             <!-- Category 2 -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100 shadow-sm border-0 overflow-hidden">
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
                     <div class="row g-0 align-items-center h-100">
                         <div class="col-5">
-                            <div class="card-img-wrapper">
-                                <img src="{% static 'images/aalp-nav-tvhome.webp' %}" class="product-img" alt="Accessories">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/aalp-nav-tvhome.webp' %}" alt="Accessories">
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="card-body d-flex flex-column justify-content-between h-100 p-3">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
                                 <div>
-                                    <h5 class="card-title text-capitalize fw-bold mb-1 fs-6">Accessories</h5>
-                                    <p class="card-text text-muted small mb-0">Smart gadgets for modern life</p>
+                                    <h5 class="card-title fw-bold mb-1 fs-6">Accessories</h5>
+                                    <p class="card-text text-muted small mb-0">Hubs, cables & audio gear</p>
                                 </div>
-                                <a href="{% url 'category_accessories' %}" class="btn btn-primary btn-sm mt-2 w-100">Shop Accessories</a>
+                                <a href="{% url 'category_accessories' %}" class="btn btn-outline-dark btn-sm rounded-pill mt-3 w-100 fw-semibold">
+                                  Browse Gear
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -392,21 +603,23 @@
             </div>
 
             <!-- Category 3 -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100 shadow-sm border-0 overflow-hidden">
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
                     <div class="row g-0 align-items-center h-100">
                         <div class="col-5">
-                            <div class="card-img-wrapper">
-                                <img src="{% static 'images/laptops.png' %}" class="product-img" alt="Laptops">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/laptops.png' %}" alt="Laptops">
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="card-body d-flex flex-column justify-content-between h-100 p-3">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
                                 <div>
-                                    <h5 class="card-title text-capitalize fw-bold mb-1 fs-6">Laptops</h5>
-                                    <p class="card-text text-muted small mb-0">Powerful computers for gaming</p>
+                                    <h5 class="card-title fw-bold mb-1 fs-6">Laptops</h5>
+                                    <p class="card-text text-muted small mb-0">Pro & gaming rigs</p>
                                 </div>
-                                <a href="{% url 'category_laptops' %}" class="btn btn-primary btn-sm mt-2 w-100">Shop Laptops</a>
+                                <a href="{% url 'category_laptops' %}" class="btn btn-outline-dark btn-sm rounded-pill mt-3 w-100 fw-semibold">
+                                  View Laptops
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -415,26 +628,41 @@
         </div>
 
         <!-- BEST SELLING PRODUCTS -->
-        <h2 class="mb-4 text-center text-capitalize fw-bold">Best Selling Products</h2>
-        <div class="row">
-            <!-- Product 1 -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100 shadow-sm border-0 position-relative overflow-visible">
-                    <!-- Red Zigzag Price Tag -->
-                    <div class="price-tag-zigzag">
-                        $99.00
-                    </div>
+        <div class="d-flex justify-content-between align-items-end mb-4 pt-3">
+            <div>
+              <h2 class="section-title m-0">Trending Products</h2>
+              <p class="text-muted small m-0">Our highest rated items this month</p>
+            </div>
+            <a href="{% url 'shop' %}" class="btn btn-link text-primary fw-bold text-decoration-none p-0">Shop All Products <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
 
+        <div class="row g-4">
+            <!-- Product 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$99.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
                     <div class="row g-0 align-items-center h-100">
-                        <div class="col-5">
-                            <div class="card-img-wrapper">
-                                <img src="{% static 'images/airpodddd.webp' %}" class="product-img" alt="Wireless Earbuds">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/airpodddd.webp' %}" alt="Wireless Earbuds">
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="card-body d-flex flex-column justify-content-center h-100 p-3">
-                                <h5 class="card-title fw-bold mb-1 fs-6 pe-3">Wireless Earbuds</h5>
-                                <p class="card-text text-muted small mb-0">Premium sound quality.</p>
+                            <div class="card-body p-3">
+                                <div class="text-warning small mb-1">
+                                  <i class="bi bi-star-fill"></i>
+                                  <i class="bi bi-star-fill"></i>
+                                  <i class="bi bi-star-fill"></i>
+                                  <i class="bi bi-star-fill"></i>
+                                  <i class="bi bi-star-fill"></i>
+                                  <span class="text-muted ms-1">(128)</span>
+                                </div>
+                                <h5 class="card-title fw-bold mb-1 fs-6">Pro Wireless Earbuds</h5>
+                                <p class="card-text text-muted small mb-2">Active noise cancellation & spatial sound.</p>
+                                <button class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold">
+                                  <i class="bi bi-bag-plus me-1"></i> Quick Add
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -442,23 +670,31 @@
             </div>
 
             <!-- Product 2 -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100 shadow-sm border-0 position-relative overflow-visible">
-                    <!-- Red Zigzag Price Tag -->
-                    <div class="price-tag-zigzag">
-                        $399.00
-                    </div>
-
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$399.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
                     <div class="row g-0 align-items-center h-100">
                         <div class="col-5">
-                            <div class="card-img-wrapper">
-                                <img src="{% static 'images/watch.webp' %}" class="product-img" alt="Smart Watch">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/watch.webp' %}" alt="Smart Watch">
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="card-body d-flex flex-column justify-content-center h-100 p-3">
-                                <h5 class="card-title fw-bold mb-1 fs-6 pe-3">Smart Watch</h5>
-                                <p class="card-text text-muted small mb-0">Stay connected everywhere.</p>
+                            <div class="card-body p-3">
+                                <div class="text-warning small mb-1">
+                                  <i class="bi bi-star-fill"></i>
+                                  <i class="bi bi-star-fill"></i>
+                                  <i class="bi bi-star-fill"></i>
+                                  <i class="bi bi-star-fill"></i>
+                                  <i class="bi bi-star-half"></i>
+                                  <span class="text-muted ms-1">(89)</span>
+                                </div>
+                                <h5 class="card-title fw-bold mb-1 fs-6">Series 9 Smart Watch</h5>
+                                <p class="card-text text-muted small mb-2">Advanced health metrics & AMOLED display.</p>
+                                <button class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold">
+                                  <i class="bi bi-bag-plus me-1"></i> Quick Add
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -466,148 +702,97 @@
             </div>
 
             <!-- Product 3 -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100 shadow-sm border-0 position-relative overflow-visible">
-                    <!-- Red Zigzag Price Tag -->
-                    <div class="price-tag-zigzag">
-                        $59.00
-                    </div>
-
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$59.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
                     <div class="row g-0 align-items-center h-100">
                         <div class="col-5">
-                            <div class="card-img-wrapper">
-                                <img src="{% static 'images/jbl_sd.webp' %}" class="product-img" alt="Bluetooth Speaker">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/jbl_sd.webp' %}" alt="Bluetooth Speaker">
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="card-body d-flex flex-column justify-content-center h-100 p-3">
-                                <h5 class="card-title fw-bold mb-1 fs-6 pe-3">Bluetooth Speaker</h5>
-                                <p class="card-text text-muted small mb-0">Rich and immersive sound.</p>
+                            <div class="card-body p-3">
+                                <div class="text-warning small mb-1">
+                                  <i class="bi bi-star-fill"></i>
+                                  <i class="bi bi-star-fill"></i>
+                                  <i class="bi bi-star-fill"></i>
+                                  <i class="bi bi-star-fill"></i>
+                                  <i class="bi bi-star-fill"></i>
+                                  <span class="text-muted ms-1">(210)</span>
+                                </div>
+                                <h5 class="card-title fw-bold mb-1 fs-6">Portable Speaker</h5>
+                                <p class="card-text text-muted small mb-2">Waterproof IPX7 rating with deep bass.</p>
+                                <button class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold">
+                                  <i class="bi bi-bag-plus me-1"></i> Quick Add
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-12 text-center">
-                <p class="text-muted">Discover our top-rated electronics loved by thousands of customers worldwide.</p>
             </div>
         </div>
     </main>
 
     <!-- FOOTER SECTION -->
-    <footer class="site-footer border-top pt-5 pb-4 mt-auto">
+    <footer class="app-footer pt-5 pb-4 mt-auto">
         <div class="container">
-            <!-- Newsletter & Account Section -->
-            <div class="row border-bottom pb-4 mb-4 align-items-center gy-3">
+            <!-- Newsletter -->
+            <div class="row border-bottom border-secondary border-opacity-25 pb-4 mb-4 align-items-center gy-3">
                 <div class="col-md-6">
-                    <h6 class="fw-bold mb-2">Get the latest deals and more</h6>
+                    <h6 class="mb-1 fs-5">Subscribe to VIP Insiders</h6>
+                    <p class="text-muted small mb-3">Get early access to drops, member discounts, and product launches.</p>
                     <form class="d-flex gap-2 max-w-md">
-                        <input type="email" class="form-control" placeholder="Enter Email Address" required>
-                        <a href="{% url 'sign_up' %}" type="submit" class="btn btn-danger text-nowrap fw-semibold">Sign Up</button>
+                        <input type="email" class="form-control footer-input px-3" placeholder="Enter your email address" required>
+                        <a href="{% url 'sign_up' %}" class="btn btn-primary text-nowrap fw-bold px-4" style="border-radius: var(--radius-md);">Join Free</a>
                     </form>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <a href="{% url 'login' %}" class="btn btn-outline-dark btn-sm me-2 fw-semibold">Sign In or Create Account</a>
-                    <a href="#" class="text-decoration-none small text-muted d-inline-block mt-2 mt-md-0 ms-2">
-                        <i class="bi bi-phone me-1"></i> My Store App
-                    </a>
+                    <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm me-2 fw-semibold px-3 rounded-pill">Sign In to Your Account</a>
                 </div>
             </div>
 
-            <!-- Navigation Links Matrix -->
-            <div class="row gy-4 border-bottom pb-4">
-                <!-- Column 1 -->
-                <div class="col-6 col-md-4 col-lg-2">
-                    <h6 class="fw-bold mb-3 fs-6">Orders & Purchases</h6>
+            <!-- Links Matrix -->
+            <div class="row gy-4 border-bottom border-secondary border-opacity-25 pb-4">
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h6 class="mb-3 fs-6">Fulfillment</h6>
                     <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                        <li><a href="#">Check Order Status</a></li>
-                        <li><a href="#">Shipping & Delivery</a></li>
-                        <li><a href="#">Returns & Exchanges</a></li>
-                        <li><a href="#">Price Match Guarantee</a></li>
-                        <li><a href="#">Product Recalls</a></li>
-                        <li><a href="#">Trade-In Program</a></li>
-                        <li><a href="#">Gift Cards</a></li>
+                        <li><a href="#">Track Orders</a></li>
+                        <li><a href="#">Shipping Rates</a></li>
+                        <li><a href="#">Returns Policy</a></li>
                     </ul>
                 </div>
-
-                <!-- Column 2 -->
-                <div class="col-6 col-md-4 col-lg-2">
-                    <h6 class="fw-bold mb-3 fs-6">Payment Options</h6>
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h6 class="mb-3 fs-6">Financing</h6>
                     <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                        <li><a href="#">My Store Credit Card</a></li>
-                        <li><a href="#">Pay Your Bill</a></li>
-                        <li><a href="#">Lease to Own</a></li>
-                        <li><a href="#">Buy Now, Pay Later</a></li>
-                        <li><a href="#">Business Financing</a></li>
+                        <li><a href="#">Store Card</a></li>
+                        <li><a href="#">Installments</a></li>
+                        <li><a href="#">Business Accounts</a></li>
                     </ul>
                 </div>
-
-                <!-- Column 3 -->
-                <div class="col-6 col-md-4 col-lg-2">
-                    <h6 class="fw-bold mb-3 fs-6">Support & Services</h6>
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h6 class="mb-3 fs-6">Customer Care</h6>
                     <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                        <li><a href="#">Visit Support Center</a></li>
-                        <li><a href="#">Shop with an Expert</a></li>
-                        <li><a href="#">Schedule a Service</a></li>
-                        <li><a href="#">Manage Appointments</a></li>
-                        <li><a href="#">Protection Plans</a></li>
-                        <li><a href="#">Haul Away & Recycling</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Warranty Claims</a></li>
                         <li><a href="#">Contact Us</a></li>
                     </ul>
                 </div>
-
-                <!-- Column 4 -->
-                <div class="col-6 col-md-4 col-lg-2">
-                    <h6 class="fw-bold mb-3 fs-6">Rewards & Offers</h6>
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h6 class="mb-3 fs-6">Company</h6>
                     <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                        <li><a href="#">Store Memberships</a></li>
-                        <li><a href="#">View Points & Offers</a></li>
-                        <li><a href="#">Member Offers</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 5 -->
-                <div class="col-6 col-md-4 col-lg-2">
-                    <h6 class="fw-bold mb-3 fs-6">Partnerships</h6>
-                    <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                        <li><a href="#">Sell on Marketplace</a></li>
-                        <li><a href="#">Advertise with Us</a></li>
-                        <li><a href="#">Affiliate Program</a></li>
-                        <li><a href="#">Health & Business</a></li>
-                        <li><a href="#">Education Store</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 6 -->
-                <div class="col-6 col-md-4 col-lg-2">
-                    <h6 class="fw-bold mb-3 fs-6">About Us</h6>
-                    <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                        <li><a href="#">Corporate Information</a></li>
+                        <li><a href="#">About Us</a></li>
                         <li><a href="#">Careers</a></li>
-                        <li><a href="#">Corporate Responsibility</a></li>
                         <li><a href="#">Sustainability</a></li>
-                        <li><a href="#">Feedback</a></li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Footer Sub Links & Legal -->
+            <!-- Legal -->
             <div class="pt-4 text-center text-md-start">
-                <div class="footer-sub-links d-flex flex-wrap gap-3 justify-content-center justify-content-md-start mb-3">
-                    <a href="#">Accessibility</a>
-                    <a href="#">Terms & Conditions</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Interest-Based Ads</a>
-                    <a href="#">State Privacy Rights</a>
-                    <a href="#">Health Data Privacy</a>
-                    <a href="#">Do Not Sell/Share My Personal Info</a>
-                    <a href="#">Limit Use of Sensitive Info</a>
-                    <a href="#">Targeted Advertising Opt Out</a>
-                </div>
-                <p class="text-muted small mb-0">
-                    In-store pricing may vary. Prices and offers are subject to change. &copy; 2026 MY STORE. All rights reserved.
+                <p class="text-muted small mb-0 opacity-75">
+                  &copy; 2026 MY STORE Inc. All rights reserved. Designed with precision for performance and ease of use.
                 </p>
             </div>
         </div>

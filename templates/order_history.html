@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- PAGE HEADER BANNER -->
+<div class="row mb-4 align-items-center">
+    <div class="col-md-8">
+        <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-bold small mb-2">
+            <i class="bi bi-clock-history me-1"></i> Account Activity
+        </span>
+        <h1 class="fw-extrabold section-title m-0">Order History</h1>
+        <p class="text-muted small mt-1 mb-0">View and track all your previous purchases in one place.</p>
+    </div>
+</div>
+
+{% if orders %}
+    <div class="d-flex flex-column gap-4 mb-5">
+        {% for order in orders %}
+        <div class="modern-card overflow-hidden">
+            <!-- Order Header -->
+            <div class="p-3 p-md-4 bg-light border-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
+                <div>
+                    <span class="fw-bold text-dark fs-6">Order #{{ order.id }}</span>
+                    <span class="text-muted small ms-2">| Placed on {{ order.created_at|date:"M d, Y" }}</span>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <span class="badge rounded-pill px-3 py-2 fw-bold {% if order.status == 'Delivered' %}bg-success{% elif order.status == 'Cancelled' %}bg-danger{% else %}bg-warning text-dark{% endif %}">
+                        {{ order.status|default:"Processing" }}
+                    </span>
+                    <span class="fw-extrabold text-primary fs-5">${{ order.total_price }}</span>
+                </div>
+            </div>
+
+            <!-- Order Items -->
+            <div class="p-3 p-md-4">
+                <ul class="list-group list-group-flush rounded border-0">
+                    {% for item in order.items.all %}
+                    <li class="list-group-item bg-transparent px-0 border-light d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-3">
+                            {% if item.product.image %}
+                                <div class="bg-light p-2 rounded-3" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
+                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                                </div>
+                            {% endif %}
+                            <div>
+                                <h6 class="mb-0 fw-bold text-dark fs-6">{{ item.product.name }}</h6>
+                                <small class="text-muted">Qty: {{ item.quantity }} × ${{ item.price }}</small>
+                            </div>
+                        </div>
+                        <span class="fw-bold text-dark">${{ item.get_total_item_price|default:item.price }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="text-center py-5 my-4">
+        <div class="modern-card p-5 max-w-md mx-auto" style="max-width: 500px;">
+            <i class="bi bi-bag-x fs-1 text-muted mb-3 d-block"></i>
+            <h4 class="fw-bold text-dark mb-2">No orders placed yet</h4>
+            <p class="text-muted small mb-4">Once you make a purchase, your orders will appear here for easy tracking.</p>
+            <a href="{% url 'shop' %}" class="btn btn-primary btn-sm rounded-pill px-4 fw-bold">Start Shopping</a>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

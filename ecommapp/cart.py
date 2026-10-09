@@ -35,6 +35,19 @@ class Cart:
             self.cart[product_id]['quantity'] += quantity
         self.save()
 
+    def increment(self , product):
+        """incremnets product quantity by 1."""
+        product_id = str(product.id)
+        if product_id in self.cart:
+            if self.cart[product_id]['quantity'] >= 3:
+                return False 
+
+            self.cart[product_id]['quantity'] += 1          
+            self.save()
+            return True
+        return True
+
+
     def decrement(self, product):
         """Decrements product quantity by 1. Removes item completely if quantity reaches 0."""
         product_id = str(product.id)
