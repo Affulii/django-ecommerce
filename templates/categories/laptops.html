@@ -196,7 +196,7 @@
                                 </div>
                                 <div class="d-flex flex-column gap-2 mt-auto">
                                     <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#laptopModal1">Details</button>
-                                    <form action="{% url 'cart_add' product_id=16 %}" method="POST" class="m-0 p-0">
+                                    <form action="{% url 'cart_add' product_id=28 %}" method="POST" class="m-0 p-0">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                                     </form>
@@ -227,7 +227,7 @@
                                 </div>
                                 <div class="d-flex flex-column gap-2 mt-auto">
                                     <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#laptopModal2">Details</button>
-                                    <form action="{% url 'cart_add' product_id=1 %}" method="POST" class="m-0 p-0">
+                                    <form action="{% url 'cart_add' product_id=22 %}" method="POST" class="m-0 p-0">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                                     </form>
@@ -258,7 +258,7 @@
                                 </div>
                                 <div class="d-flex flex-column gap-2 mt-auto">
                                     <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#laptopModal3">Details</button>
-                                    <form action="{% url 'cart_add' product_id=18 %}" method="POST" class="m-0 p-0">
+                                    <form action="{% url 'cart_add' product_id=11 %}" method="POST" class="m-0 p-0">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                                     </form>
@@ -289,7 +289,7 @@
                                 </div>
                                 <div class="d-flex flex-column gap-2 mt-auto">
                                     <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#laptopModal4">Details</button>
-                                    <form action="{% url 'cart_add' product_id=25 %}" method="POST" class="m-0 p-0">
+                                    <form action="{% url 'cart_add' product_id=18 %}" method="POST" class="m-0 p-0">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                                     </form>
@@ -299,6 +299,37 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Laptop Item 5 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="modern-card h-100">
+                    <div class="price-badge">$1,299.00</div>
+                    <button class="wishlist-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                    <div class="row g-0 align-items-center h-100">
+                        <div class="col-5 position-relative">
+                            <div class="card-media-wrapper">
+                                <img src="{% static 'images/imac.jpg' %}" alt="iMAC">
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between h-100">
+                                <div>
+                                    <span class="badge bg-danger mb-1 rounded-pill">High Performance</span>
+                                    <h5 class="card-title fw-bold mb-1 fs-6 text-truncate">iMAC</h5>
+                                    <p class="card-text text-muted small mb-2">16GB Memory, M5 Chip, 512GB</p>
+                                </div>
+                                <div class="d-flex flex-column gap-2 mt-auto">
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-pill w-100 fw-semibold" data-bs-toggle="modal" data-bs-target="#laptopModal4">Details</button>
+                                    <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-sm rounded-pill w-100 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
 
         </div>
     </main>
@@ -328,7 +359,7 @@
                 </div>
                 <div class="modal-footer border-top-0 pt-0">
                     <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
-                    <form action="{% url 'cart_add' product_id=16 %}" method="POST" class="m-0 p-0">
+                    <form action="{% url 'cart_add' product_id=28 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
@@ -360,7 +391,7 @@
                 </div>
                 <div class="modal-footer border-top-0 pt-0">
                     <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
-                    <form action="{% url 'cart_add' product_id=1 %}" method="POST" class="m-0 p-0">
+                    <form action="{% url 'cart_add' product_id=22 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
@@ -392,7 +423,7 @@
                 </div>
                 <div class="modal-footer border-top-0 pt-0">
                     <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
-                    <form action="{% url 'cart_add' product_id=18 %}" method="POST" class="m-0 p-0">
+                    <form action="{% url 'cart_add' product_id=11 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>
@@ -424,7 +455,39 @@
                 </div>
                 <div class="modal-footer border-top-0 pt-0">
                     <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
-                    <form action="{% url 'cart_add' product_id=25 %}" method="POST" class="m-0 p-0">
+                    <form action="{% url 'cart_add' product_id=18 %}" method="POST" class="m-0 p-0">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 5: Imac -->
+    <div class="modal fade" id="laptopModal4" tabindex="-1" aria-labelledby="laptopModal4Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="laptopModal4Label">imac</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="text-center mb-3">
+                        <img src="{% static 'images/imac.jpg' %}" class="img-fluid mb-2" style="max-height: 180px; object-fit: contain;" alt="MacBook Air 13-inch">
+                        <h4 class="text-primary fw-bold">$1,299.00</h4>
+                    </div>
+                    <h6 class="fw-bold mb-2">Specifications:</h6>
+                    <ul class="list-group list-group-flush mb-2 small">
+                        <li class="list-group-item bg-transparent"><strong>Display:</strong> 13.3-inch Retina Display</li>
+                        <li class="list-group-item bg-transparent"><strong>Processor:</strong> Apple M5 Chip</li>
+                        <li class="list-group-item bg-transparent"><strong>Memory:</strong> 16GB Unified Memory</li>
+                        <li class="list-group-item bg-transparent"><strong>Storage:</strong> 512GB SSD</li>
+                    </ul>
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url 'cart_add' product_id=9 %}" method="POST" class="m-0 p-0">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold"><i class="bi bi-lightning-fill me-1"></i> Buy Now</button>
                     </form>

@@ -12,7 +12,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
 # Internal app imports
-from .models import Product, Order, OrderItem, Address
+from .models import Product, Order, OrderItem, Address,UserLog
 from .cart import Cart
 from .forms import UserProfileForm, AddressForm
 
@@ -195,13 +195,22 @@ def checkout(request):
         return redirect('shop')
 
     if request.method == 'POST':
-        with transaction.atomic():
-            user = request.user if request.user.is_authenticated else None
-            
+        # Get payment method from checkout form
+        payment_method = request.POST.get('payment_method', 'card')
+        
+        # Extract last 4 digits if card option was chosen
+        card_last_four = None
+        if payment_method == 'card':
+            raw_card_num = request.POST.get('card_number', '')
+            if raw_card_num:
+                card_last_four = raw_card_num.replace(" ", "")[-4:]
+
             # Create order linked to user if logged in
             order = Order.objects.create(
-                user=user,
+                user = request.user if request.user.is_authenticated else None,
                 total_price=cart.get_total_price(),
+                payment_method=payment_method,
+                card_last_four=card_last_four,
                 status='Processing'
             )
 
@@ -378,3 +387,13 @@ def order_history(request):
       .order_by('-created_at')
   )
     return render(request, 'order_history.html', {'orders':orders})
+
+def log_user_event(request, action, details=None, level='INFO'):
+    ip = request.META.get('REMOTE_ADDR')
+    UserLog.objects.create(
+        user=request.user if request.user.is_authenticated else None,
+        action=action,
+        details=details,
+        log_level=level,
+        ip_address=ip
+    )

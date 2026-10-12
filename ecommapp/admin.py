@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Order, OrderItem
+from .models import Product, Order, OrderItem, UserLog
 
 # ------------------------------------------------------------------
 # PRODUCT ADMIN
@@ -40,3 +40,11 @@ class OrderAdmin(admin.ModelAdmin):
     
     # Shows newest orders first
     ordering = ['-created_at']
+
+
+@admin.register(UserLog)
+class UserLogAdmin(admin.ModelAdmin):
+    list_display = ('timestamp', 'user', 'action', 'log_level', 'ip_address')
+    list_filter = ('log_level', 'timestamp')
+    search_fields = ('user__username', 'action', 'details', 'ip_address')
+    readonly_fields = ('timestamp', 'user', 'action', 'log_level', 'details', 'ip_address')

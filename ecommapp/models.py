@@ -51,8 +51,12 @@ class Product(models.Model):
         return self.stock > 0
 
 
-# --- ORDER MODEL ---
 class Order(models.Model):
+    PAYMENT_METHOD_CHOICES = [
+        ('card', 'Credit / Debit Card'),
+        ('cod', 'Cash on Delivery'),
+    ]
+
     user = models.ForeignKey(
         User, 
         on_delete=models.CASCADE, 
@@ -64,10 +68,17 @@ class Order(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     status = models.CharField(max_length=50, default='Processing')
 
+    # NEW: Payment tracking fields
+    payment_method = models.CharField(
+        max_length=10, 
+        choices=PAYMENT_METHOD_CHOICES, 
+        default='card'
+    )
+    card_last_four = models.CharField(max_length=4, blank=True, null=True)
+
     def __str__(self):
         user_str = self.user.username if self.user else "Guest"
         return f"Order #{self.id} ({user_str})"
-
 
 # --- ORDER ITEM MODEL ---
 class OrderItem(models.Model):
@@ -78,3 +89,25 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name}" 
+
+
+class UserLog(models.Model):
+    LOG_LEVEL_CHOICES = [
+        ('INFO', 'Info'),
+        ('WARNING', 'Warning'),
+        ('ERROR', 'Error'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    action = models.CharField(max_length=255)
+    log_level = models.CharField(max_length=10, choices=LOG_LEVEL_CHOICES, default='INFO')
+    details = models.TextField(blank=True, null=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-timestamp']
+
+    def __str__(self):
+        user_str = self.user.username if self.user else "Anonymous"
+        return f"[{self.log_level}] {user_str} - {self.action} ({self.timestamp.strftime('%Y-%m-%d %H:%M')})"
