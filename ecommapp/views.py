@@ -205,39 +205,40 @@ def checkout(request):
             if raw_card_num:
                 card_last_four = raw_card_num.replace(" ", "")[-4:]
 
-            # Create order linked to user if logged in
-            order = Order.objects.create(
-                user = request.user if request.user.is_authenticated else None,
-                total_price=cart.get_total_price(),
-                payment_method=payment_method,
-                card_last_four=card_last_four,
-                status='Processing'
+        # ✅ FIXED: Placed outside the "if payment_method == 'card'" block
+        # Creates order linked to user if logged in for BOTH card and cod
+        order = Order.objects.create(
+            user=request.user if request.user.is_authenticated else None,
+            total_price=cart.get_total_price(),
+            payment_method=payment_method,
+            card_last_four=card_last_four,
+            status='Processing'
+        )
+
+        # Create OrderItems
+        order_items_summary = []
+        for item in cart:
+            product = item['product'] if isinstance(item['product'], Product) else Product.objects.get(id=item['product_id'])
+            
+            OrderItem.objects.create(
+                order=order,
+                product=product,
+                price=item['price'],
+                quantity=item['quantity']
             )
+            order_items_summary.append(f"- {product.name} (Qty: {item['quantity']}) - ${item['price']}")
 
-            # Create OrderItems
-            order_items_summary = []
-            for item in cart:
-                product = item['product'] if isinstance(item['product'], Product) else Product.objects.get(id=item['product_id'])
-                
-                OrderItem.objects.create(
-                    order=order,
-                    product=product,
-                    price=item['price'],
-                    quantity=item['quantity']
-                )
-                order_items_summary.append(f"- {product.name} (Qty: {item['quantity']}) - ${item['price']}")
+        # Store order summary in session
+        request.session['last_order'] = {
+            'order_id': order.id,
+            'total': str(order.total_price),
+            'items_count': len(cart),
+        }
 
-            # Store order summary in session
-            request.session['last_order'] = {
-                'order_id': order.id,
-                'total': str(order.total_price),
-                'items_count': len(cart),
-            }
-
-            # Send Email
-            subject = f"🚨 New Order Received! Order #{order.id}"
-            items_text = "\n".join(order_items_summary)
-            message = f"""
+        # Send Email
+        subject = f"🚨 New Order Received! Order #{order.id}"
+        items_text = "\n".join(order_items_summary)
+        message = f"""
 New order received on your store!
 
 Order ID: #{order.id}
@@ -247,23 +248,22 @@ Total Items: {len(cart)}
 Purchased Items:
 {items_text}
 """
-            send_mail(
-                subject=subject,
-                message=message,
-                from_email=getattr(settings, 'DEFAULT_FROM_EMAIL', 'noreply@mystore.com'),
-                recipient_list=[getattr(settings, 'ADMIN_NOTIFICATION_EMAIL', 'admin@mystore.com')],
-                fail_silently=True,
-            )
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=getattr(settings, 'DEFAULT_FROM_EMAIL', 'noreply@mystore.com'),
+            recipient_list=[getattr(settings, 'ADMIN_NOTIFICATION_EMAIL', 'admin@mystore.com')],
+            fail_silently=True,
+        )
 
-            cart.clear()
-            return redirect('order_success')
+        cart.clear()
+        return redirect('order_success')
 
     context = {
         'cart': cart,
         'grand_total': cart.get_total_price(),
     }
     return render(request, 'checkout.html', context)
-
 
 def order_success(request):
     order_info = request.session.pop('last_order', None)
