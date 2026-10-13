@@ -80,6 +80,19 @@ class Order(models.Model):
         user_str = self.user.username if self.user else "Guest"
         return f"Order #{self.id} ({user_str})"
 
+    STATUS_CHOICES = [
+        ('Processing', 'Processing'),
+        ('Approved', 'Approved'),
+        ('Out for Delivery', 'Out for Delivery'),
+        ('Delivered', 'Delivered'),
+    ]
+    
+    # ... other fields (user, total_price, payment_method, etc.) ...
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Processing')
+    created_at = models.DateTimeField(auto_now_add=True)    
+
+
+
 # --- ORDER ITEM MODEL ---
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
