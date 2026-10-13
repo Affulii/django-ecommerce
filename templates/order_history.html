@@ -27,7 +27,7 @@
                     <span class="badge rounded-pill px-3 py-2 fw-bold {% if order.status == 'Delivered' %}bg-success{% elif order.status == 'Cancelled' %}bg-danger{% else %}bg-warning text-dark{% endif %}">
                         {{ order.status|default:"Processing" }}
                     </span>
-                    <span class="fw-extrabold text-primary fs-5">${{ order.total_price }}</span>
+                        <span class="fw-extrabold text-primary fs-5">${{ order.total_price }}</span>
                 </div>
             </div>
 

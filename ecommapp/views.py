@@ -197,7 +197,25 @@ def checkout(request):
     if request.method == 'POST':
         # Get payment method from checkout form
         payment_method = request.POST.get('payment_method', 'card')
-        
+
+        full_name = request.POST.get('full_name')
+
+        if not full_name:
+            first = request.POST.get('first_name', '')
+            last = request.POST.get('last_name', '')
+            if first or last:
+                full_name = f"{first} {last}".strip()
+            
+        if not full_name:
+            full_name = request.POST.get('name', '')
+
+        # Final fallback if form fields are completely missing
+        if not full_name:
+            if request.user.is_authenticated:
+                full_name = request.user.get_full_name() or request.user.username
+            else:
+                full_name = "Guest Customer"
+
         # Extract last 4 digits if card option was chosen
         card_last_four = None
         if payment_method == 'card':
@@ -209,9 +227,10 @@ def checkout(request):
         # Creates order linked to user if logged in for BOTH card and cod
         order = Order.objects.create(
             user=request.user if request.user.is_authenticated else None,
-            full_name=request.POST.get('full_name'),
-            email=request.POST.get('email'),
-            phone=request.POST.get('phone'),
+            full_name=full_name,
+            email=request.POST.get('email', ''),
+            phone=request.POST.get('phone', ''),
+            delivery_address=request.POST.get('delivery_address', ''),
             total_price=cart.get_total_price(),
             payment_method=payment_method,
             card_last_four=card_last_four,
