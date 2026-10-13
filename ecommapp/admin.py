@@ -24,22 +24,22 @@ class OrderItemInline(admin.TabularInline):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     # Columns displayed on the main Orders table
-    list_display = ['id', 'status', 'total_price', 'created_at']
-    
-    # Filter sidebar by status and date created
+    list_display = ['id', 'full_name', 'email', 'phone', 'status', 'total_price', 'created_at']
     list_filter = ['status', 'created_at']
-    
-    # Search bar for Order ID or User info
     search_fields = ['id',]
-    
-    # Allows changing order status directly from the table list
-    list_editable = ['status']
-    
+    list_editable = ['status']   
     # Displays purchased items inside the Order edit view
-    inlines = [OrderItemInline]
-    
+    inlines = [OrderItemInline] 
     # Shows newest orders first
     ordering = ['-created_at']
+    fieldsets = (
+        ('Customer Verification Info', {
+            'fields': ('full_name', 'email', 'phone', 'delivery_address', 'user')
+        }),
+        ('Order & Payment Details', {
+            'fields': ('status', 'total_price', 'card_last_four')
+        }),
+    )
 
 
 @admin.register(UserLog)

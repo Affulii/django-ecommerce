@@ -209,6 +209,9 @@ def checkout(request):
         # Creates order linked to user if logged in for BOTH card and cod
         order = Order.objects.create(
             user=request.user if request.user.is_authenticated else None,
+            full_name=request.POST.get('full_name'),
+            email=request.POST.get('email'),
+            phone=request.POST.get('phone'),
             total_price=cart.get_total_price(),
             payment_method=payment_method,
             card_last_four=card_last_four,
